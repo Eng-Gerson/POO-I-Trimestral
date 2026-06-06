@@ -1,10 +1,12 @@
 package model;
-import java.util.List;
 
+import java.io.Serializable;
 import model.Paciente;
 import model.Profissional;
 
-public class Consulta {
+public class Consulta implements Serializable {
+
+    private int idConsulta;
     private String data;
     private String horas;
     private String tipo;
@@ -12,6 +14,22 @@ public class Consulta {
     private Paciente paciente;
     private Profissional profissional;
     private String diagnostico;
+
+    public Consulta(int idConsulta, String data, String horas, String tipo, String obrservasoesClinicas, Paciente paciente,
+            Profissional profissional, String diagnostico) {
+        this.idConsulta = idConsulta;
+        this.data = data;
+        this.horas = horas;
+        this.tipo = tipo;
+        this.obrservasoesClinicas = obrservasoesClinicas;
+        this.paciente = paciente;
+        this.profissional = profissional;
+        this.diagnostico = diagnostico;
+    }
+
+    public int getIdConsulta() {
+        return idConsulta;
+    }
     public String getData() {
         return data;
     }
@@ -27,7 +45,7 @@ public class Consulta {
     public Paciente getPaciente() {
         return paciente;
     }
-    public Proficional getProfissional() {
+    public Profissional getProfissional() {
         return profissional;
     }
     public String getDiagnostico() {

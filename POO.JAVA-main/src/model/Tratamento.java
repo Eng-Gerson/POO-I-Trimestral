@@ -1,7 +1,11 @@
 package model;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Tratamento {
+public class Tratamento implements Serializable {
+
+    private int idTratamento;
     private String tipo;
     private String descricao;
     private String dataInicio;
@@ -20,8 +24,8 @@ public class Tratamento {
     public String getDataFim() {
         return dataFim;
     }
-    public Paciente getPacientes() {
-        return pacientes;
+    public Paciente getPaciente() {
+        return paciente;
     }
     public List<Profissional> getProfissionais() {
         return profissionais;
@@ -54,5 +58,4 @@ public class Tratamento {
         this.profissionais = profissionais;
     }
 
-    
 }

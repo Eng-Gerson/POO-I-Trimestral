@@ -1,17 +1,37 @@
 package model;
-import model.Departamento;
-import model.Proficional;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Internamento {
-    private String dadaEntrada;
+public class Internamento implements Serializable {
+
+    private int idInternamento;
+    private String dataEntrada;
     private String dataSaida;
+    private int quarto;
     private String motivo;
-    private List<Proficional> proficionais;
+    private List<Profissional> profissionaisEnvolvidos;
     private Departamento departamento;
     private Paciente paciente;
-    public String getDadaEntrada() {
-        return dadaEntrada;
+
+    public Internamento(String dataEntrada, String dataSaida, String motivo, Departamento departamento,
+            Paciente paciente) {
+        this.dataEntrada = dataEntrada;
+        this.dataSaida = dataSaida;
+        this.motivo = motivo;
+        this.departamento = departamento;
+        this.paciente = paciente;
+        this.profissionaisEnvolvidos = profissionaisEnvolvidos;
+    }
+
+    public int getQuarto() {
+        return quarto;
+    }
+    public int getIdInternamento() {
+        return idInternamento;
+    }
+    public String getDataEntrada() {
+        return dataEntrada;
     }
     public String getDataSaida() {
         return dataSaida;
@@ -19,8 +39,8 @@ public class Internamento {
     public String getMotivo() {
         return motivo;
     }
-    public List<Proficional> getProficionais() {
-        return proficionais;
+    public List<Profissional> getProfissionaisEnvolvidos() {
+        return profissionaisEnvolvidos;
     }
     public Departamento getDepartamento() {
         return departamento;
@@ -28,8 +48,8 @@ public class Internamento {
     public Paciente getPaciente() {
         return paciente;
     }
-    public void setDadaEntrada(String dadaEntrada) {
-        this.dadaEntrada = dadaEntrada;
+    public void setDataEntrada(String dataEntrada) {
+        this.dataEntrada = dataEntrada;
     }
     public void setDataSaida(String dataSaida) {
         this.dataSaida = dataSaida;
@@ -37,8 +57,8 @@ public class Internamento {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
-    public void setProficionais(List<Proficional> proficionais) {
-        this.proficionais = proficionais;
+    public void setProfissionaisEnvolvidos(List<Profissional> profissionaisEnvolvidos) {
+        this.profissionaisEnvolvidos = profissionaisEnvolvidos;
     }
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
@@ -46,15 +66,5 @@ public class Internamento {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-    public Internamento(String dadaEntrada, String dataSaida, String motivo, Departamento departamento,
-            Paciente paciente) {
-        this.dadaEntrada = dadaEntrada;
-        this.dataSaida = dataSaida;
-        this.motivo = motivo;
-        this.departamento = departamento;
-        this.paciente = paciente;
-        this.proficionais = proficionais;
-    }
 
-    
 }

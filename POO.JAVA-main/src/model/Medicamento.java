@@ -1,11 +1,22 @@
 package model;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Medicamento {
+public class Medicamento implements Serializable {
+
    private int idMedicamento;
    private String nome;
    private String dosagem;
    private List<String> dataAplicacao;
+
+   public Medicamento(int idMedicamento, List<String> dataAplicacao) {
+    this.idMedicamento = idMedicamento;
+    this.nome = nome;
+    this.dosagem = dosagem;
+    this.dataAplicacao = dataAplicacao;
+   }
+
    public int getIdMedicamento() {
     return idMedicamento;
    }
@@ -18,7 +29,6 @@ public class Medicamento {
    public List<String> getDataAplicacao(){
     return dataAplicacao;
    }
-   
    public void setIdMedicamento(int idMedicamento) {
     this.idMedicamento = idMedicamento;
    }
@@ -31,12 +41,5 @@ public class Medicamento {
    public void setDataAplicacao( List<String> dataAplicacao) {
     this.dataAplicacao = dataAplicacao;
    }
-   public Medicamento(int idMedicamento, List<String> dataAplicacao) {
-    this.idMedicamento = idMedicamento;
-    this.nome = nome;
-    this.dosagem = dosagem;
-    this.dataAplicacao = dataAplicacao;
-   }
-   
-   
+
 }
