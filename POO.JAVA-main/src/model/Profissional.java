@@ -2,7 +2,7 @@ package model;
 import model.Paciente;
 import java.util.*;
 
-public class Profissional {
+public class Profissional extends Pessoa{
     protected String idProfissional;
     protected Departamento departamento;
     protected List<String> contacto;
