@@ -23,16 +23,16 @@ public class ExameRepository {
         return listaExames;
     }
 
-    public Exame buscarPorId(String id) {
+    public Exame buscarPorId(int id) {
         for (Exame exame : listaExames) {
-            if (exame.getIdExame().equals(id)) {
+            if (exame.getIdExame() == id) {
                 return exame;
             }
         }
         return null;
     }
 
-    public void deletar(String id) {
+    public void deletar(int id) {
         Exame exame = buscarPorId(id);
         if (exame != null) {
             listaExames.remove(exame);
@@ -42,7 +42,7 @@ public class ExameRepository {
 
     public void atualizar(Exame exame) {
         for (int i = 0; i < listaExames.size(); i++) {
-            if (listaExames.get(i).getIdExame().equals(exame.getIdExame())) {
+            if (listaExames.get(i).getIdExame() == exame.getIdExame()) {
                 listaExames.set(i, exame);
                 gravarNoFicheiro();
                 return;

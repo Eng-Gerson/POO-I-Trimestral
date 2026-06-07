@@ -9,7 +9,7 @@ public class ConsoleInput {
     // Mantemos uma única instância do BufferedReader para toda a aplicação
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    // 1. Método para ler Texto (String)
+    
     public static String lerString(String mensagem) {
         while (true) {
             try {
@@ -26,7 +26,7 @@ public class ConsoleInput {
         }
     }
 
-    // 2. Método para ler Números Inteiros (int) com validação de formato
+    
     public static int lerInteiro(String mensagem) {
         while (true) {
             try {
@@ -40,7 +40,7 @@ public class ConsoleInput {
         }
     }
 
-    // 3. Método para ler Números Decimais (double) - útil para preços, taxas, etc.
+    
     public static double lerDecimal(String mensagem) {
         while (true) {
             try {

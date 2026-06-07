@@ -45,7 +45,7 @@ public class MenuExame {
     private static void cadastrarExame() {
         System.out.println("\n--- MARCAR EXAME ---");
         try {
-            String id   = ConsoleInput.lerString("ID do Exame: ");
+            int id   = ConsoleInput.lerInteiro("ID do Exame: ");
             String tipo = ConsoleInput.lerString("Tipo (ex: Hemograma, Raio-X): ");
             String data = ConsoleInput.lerString("Data (dd/mm/aaaa): ");
 
@@ -67,7 +67,7 @@ public class MenuExame {
 
     private static void buscarExame() {
         System.out.println("\n--- BUSCAR EXAME ---");
-        String id = ConsoleInput.lerString("ID do Exame: ");
+        int id = ConsoleInput.lerInteiro("ID do Exame: ");
 
         try {
             Exame e = exameService.buscarExamePorId(id);

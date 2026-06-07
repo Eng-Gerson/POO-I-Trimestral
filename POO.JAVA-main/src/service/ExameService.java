@@ -22,7 +22,7 @@ public class ExameService {
         if (exame == null) {
             throw new ExameInvalidoException("Os dados do exame não foram fornecidos.");
         }
-        if (exame.getIdExame() == null || exame.getIdExame().trim().isEmpty()) {
+        if (exame.getIdExame() <=0 ) {
             throw new ExameInvalidoException("ID do exame inválido. Não pode estar vazio.");
         }
         if (exame.getTipo() == null || exame.getTipo().trim().isEmpty()) {
@@ -54,8 +54,8 @@ public class ExameService {
         return exameRepository.buscarTodos();
     }
 
-    public Exame buscarExamePorId(String id) {
-        if (id == null || id.trim().isEmpty()) {
+    public Exame buscarExamePorId(int id) {
+        if (id <= 0) {
             throw new ExameInvalidoException("ID inválido para busca de exame.");
         }
         Exame exame = exameRepository.buscarPorId(id);
@@ -65,8 +65,8 @@ public class ExameService {
         return exame;
     }
 
-    public void removerExame(String id) {
-        if (id == null || id.trim().isEmpty()) {
+    public void removerExame(int id) {
+        if (id <= 0) {
             throw new ExameInvalidoException("ID inválido para remoção de exame.");
         }
         if (exameRepository.buscarPorId(id) == null) {

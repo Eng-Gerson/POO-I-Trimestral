@@ -6,14 +6,14 @@ public class Exame implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String tipo;
-    private String idExame;
+    private int idExame;
     private String data;
     private String resultado;
     private String observacoes;
     private Paciente paciente;
     private Consulta consulta;
 
-    public Exame(String tipo, String idExame, String data, String resultado, String observacoes,
+    public Exame(String tipo, int idExame, String data, String resultado, String observacoes,
             Paciente paciente, Consulta consulta) {
         this.tipo = tipo;
         this.idExame = idExame;
@@ -24,7 +24,7 @@ public class Exame implements Serializable {
         this.consulta = consulta;
     }
 
-    public String getIdExame() { return idExame; }
+    public int getIdExame() { return idExame; }
     public String getTipo() { return tipo; }
     public String getData() { return data; }
     public String getResultado() { return resultado; }

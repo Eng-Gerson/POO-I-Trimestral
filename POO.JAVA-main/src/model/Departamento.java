@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Departamento implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private String nomeDepartamento;
     private int idDepartamento;
