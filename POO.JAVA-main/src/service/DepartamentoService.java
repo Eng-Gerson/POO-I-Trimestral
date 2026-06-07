@@ -2,6 +2,8 @@ package service;
 
 import model.Departamento;
 import repository.DepartamentoRepository;
+import exception.EntidadeNaoEncontradaException;
+
 import java.util.List;
 
 public class DepartamentoService {
@@ -12,58 +14,46 @@ public class DepartamentoService {
         this.departamentoRepository = new DepartamentoRepository();
     }
 
-    /**
-     * Cadastra um novo departamento no sistema aplicando as regras de validação.
-     */
     public void cadastrarDepartamento(Departamento departamento) {
         if (departamento == null) {
-            System.out.println("Erro Crítico: Os dados do departamento não foram fornecidos.");
-            return;
+            throw new IllegalArgumentException("Os dados do departamento não foram fornecidos.");
         }
-
         if (departamento.getIdDepartamento() <= 0) {
-            System.out.println("Erro: ID do departamento inválido. Deve ser maior que zero.");
-            return;
+            throw new IllegalArgumentException("ID do departamento inválido. Deve ser maior que zero.");
         }
-        
         if (departamento.getNomeDepartamento() == null || departamento.getNomeDepartamento().trim().isEmpty()) {
-            System.out.println("Erro: O nome do departamento é obrigatório (ex: Urgência, Pediatria).");
-            return;
+            throw new IllegalArgumentException("O nome do departamento é obrigatório.");
+        }
+        if (departamentoRepository.buscarPorId(departamento.getIdDepartamento()) != null) {
+            throw new IllegalArgumentException("Já existe um departamento com o ID: " + departamento.getIdDepartamento());
         }
 
         departamentoRepository.salvar(departamento);
-        System.out.println("Sucesso: Departamento de '" + departamento.getNomeDepartamento() + "' cadastrado com sucesso!");
+        System.out.println("Sucesso: Departamento " + departamento.getNomeDepartamento() + " cadastrado com sucesso!");
     }
 
-    /**
-     * Retorna a lista de todos os departamentos cadastrados.
-     */
     public List<Departamento> listarDepartamentos() {
         return departamentoRepository.buscarTodos();
     }
 
-    /**
-     * Busca um departamento específico utilizando o seu ID.
-     */
     public Departamento buscarDepartamentoPorId(int id) {
         if (id <= 0) {
-            System.out.println("Erro: ID inválido para busca de departamento.");
-            return null;
+            throw new IllegalArgumentException("ID inválido para busca. Deve ser maior que zero.");
         }
-        return departamentoRepository.buscarPorId(id);
+        Departamento departamento = departamentoRepository.buscarPorId(id);
+        if (departamento == null) {
+            throw new EntidadeNaoEncontradaException("Departamento com ID " + id + " não encontrado.");
+        }
+        return departamento;
     }
 
-    /**
-     * Remove um departamento do sistema pelo ID.
-     */
     public void removerDepartamento(int id) {
-        Departamento departamentoExistente = departamentoRepository.buscarPorId(id);
-        
-        if (departamentoExistente == null) {
-            System.out.println("Erro: Não é possível remover. Departamento não encontrado no sistema.");
-            return;
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID inválido para remoção. Deve ser maior que zero.");
         }
-
+        if (departamentoRepository.buscarPorId(id) == null) {
+            throw new EntidadeNaoEncontradaException("Não é possível remover. Departamento com ID " + id + " não encontrado.");
+        }
         departamentoRepository.deletar(id);
         System.out.println("Departamento ID " + id + " removido do sistema com sucesso.");
     }

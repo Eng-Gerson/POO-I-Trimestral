@@ -41,17 +41,17 @@ public class MenuPaciente {
         try {
             int id          = ConsoleInput.lerInteiro("ID: ");
             String nome     = ConsoleInput.lerString("Nome: ");
-            int idade       = ConsoleInput.lerInteiro("Idade: ");
             int altura      = ConsoleInput.lerInteiro("Altura (cm): ");
             float peso      = (float) ConsoleInput.lerDecimal("Peso (kg): ");
-            String dataNasc = ConsoleInput.lerString("Data de Nascimento (dd/mm/aaaa): ");
+            String dataNasc = ConsoleInput.lerString("Data de Nascimento (dd/MM/yyyy): ");
             char genero     = ConsoleInput.lerString("Género (M/F): ").charAt(0);
             String endereco = ConsoleInput.lerString("Endereço: ");
             String contacto = ConsoleInput.lerString("Contacto: ");
             String contatoEmerg = ConsoleInput.lerString("Contacto de Emergência: ");
 
+            // Removida a entrada de idade - será calculada automaticamente
             Paciente p = new Paciente(
-                id, altura, peso, idade, nome, dataNasc, genero, endereco,
+                id, altura, peso, nome, dataNasc, genero, endereco,
                 new ArrayList<>(Arrays.asList(contacto)),
                 new ArrayList<>(Arrays.asList(contatoEmerg)),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
@@ -77,7 +77,7 @@ public class MenuPaciente {
         }
 
         lista.forEach(p ->
-            System.out.println("ID: " + p.getIdPaciente() + " | Nome: " + p.getNome() + " | Idade: " + p.getIdade()));
+            System.out.println("ID: " + p.getIdPaciente() + " | Nome: " + p.getNome() + " | Idade: " + p.getIdade() + " anos"));
     }
 
     private static void verDadosCompletos() {
@@ -97,6 +97,8 @@ public class MenuPaciente {
             System.out.println("Endereço: " + p.getEndereco());
             System.out.println("Contacto: " + p.getContacto());
             System.out.println("Emergência: " + p.getContactoEmergencia());
+            System.out.println("IMC: " + String.format("%.2f", p.calcularIMC()));
+            p.verificarIMC();
 
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO]: " + e.getMessage());

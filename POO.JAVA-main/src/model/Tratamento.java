@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Tratamento implements Serializable {
-    private static final long serialVersionUID = 1L; // Recomenda-se para classes Serializable
+    private static final long serialVersionUID = 1L;
 
     private int idTratamento;
     private String tipo;
@@ -13,6 +13,7 @@ public class Tratamento implements Serializable {
     private String dataFim;
     private Paciente paciente;
     private List<Profissional> profissionais;
+    private boolean concluido; // Novo campo para indicar conclusão do tratamento
 
     public Tratamento(int idTratamento, String tipo, String descricao, String dataInicio, String dataFim, 
                       Paciente paciente, List<Profissional> profissionais) {
@@ -23,6 +24,7 @@ public class Tratamento implements Serializable {
         this.dataFim = dataFim;
         this.paciente = paciente;
         this.profissionais = profissionais;
+        this.concluido = false; // Iniciado como não concluído
     }
 
     public int getIdTratamento() { return idTratamento; }
@@ -45,4 +47,27 @@ public class Tratamento implements Serializable {
 
     public List<Profissional> getProfissionais() { return profissionais; }
     public void setProfissionais(List<Profissional> profissionais) { this.profissionais = profissionais; }
+
+    public boolean isConcluido() { return concluido; }
+    public void setConcluido(boolean concluido) { this.concluido = concluido; }
+
+    /**
+     * Marca o tratamento como concluído
+     */
+    public void concluir() {
+        this.concluido = true;
+    }
+
+    /**
+     * Obtém o status do tratamento
+     */
+    public String getStatus() {
+        if (concluido) {
+            return "Concluído";
+        } else if (dataFim != null && !dataFim.isEmpty()) {
+            return "Finalizado";
+        } else {
+            return "Em andamento";
+        }
+    }
 }
