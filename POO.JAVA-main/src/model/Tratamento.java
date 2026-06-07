@@ -10,8 +10,22 @@ public class Tratamento implements Serializable {
     private String descricao;
     private String dataInicio;
     private String dataFim;
-    private Paciente pacientes;
+    private Paciente paciente;
     private List<Profissional> profissionais;
+
+    public Tratamento(String tipo, String descricao, String dataInicio, String dataFim, Paciente paciente,
+            List<Profissional> profissionais) {
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.paciente = paciente;
+        this.profissionais = profissionais;
+    }
+
+    public int getIdTratamento() {
+        return idTratamento;
+    }
     public String getTipo() {
         return tipo;
     }
@@ -42,20 +56,12 @@ public class Tratamento implements Serializable {
     public void setDataFim(String dataFim) {
         this.dataFim = dataFim;
     }
-    public void setPacientes(Paciente pacientes) {
-        this.pacientes = pacientes;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
     public void setProfissionais(List<Profissional> profissionais) {
         this.profissionais = profissionais;
     }
-    public Tratamento(String tipo, String descricao, String dataInicio, String dataFim, Paciente pacientes,
-            List<Profissional> profissionais) {
-        this.tipo = tipo;
-        this.descricao = descricao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.pacientes = pacientes;
-        this.profissionais = profissionais;
-    }
+
 
 }
