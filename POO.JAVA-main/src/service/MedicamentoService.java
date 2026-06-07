@@ -2,6 +2,9 @@ package service;
 
 import model.Medicamento;
 import repository.MedicamentoRepository;
+import exception.EntidadeNaoEncontradaException;
+import exception.MedicamentoInvalidoException;
+
 import java.util.List;
 
 public class MedicamentoService {
@@ -12,58 +15,49 @@ public class MedicamentoService {
         this.medicamentoRepository = new MedicamentoRepository();
     }
 
-    /**
-     * Cadastra um novo medicamento no sistema aplicando as regras de validação.
-     */
     public void cadastrarMedicamento(Medicamento medicamento) {
         if (medicamento == null) {
-            System.out.println("Erro Crítico: Os dados do medicamento não foram fornecidos.");
-            return;
+            throw new MedicamentoInvalidoException("Os dados do medicamento não foram fornecidos.");
         }
-
         if (medicamento.getIdMedicamento() <= 0) {
-            System.out.println("Erro: ID do medicamento inválido. Deve ser maior que zero.");
-            return;
+            throw new MedicamentoInvalidoException("ID do medicamento inválido. Deve ser maior que zero.");
         }
-        
+        if (medicamentoRepository.buscarPorId(medicamento.getIdMedicamento()) != null) {
+            throw new MedicamentoInvalidoException("Já existe um medicamento registado com o ID: " + medicamento.getIdMedicamento());
+        }
         if (medicamento.getNome() == null || medicamento.getNome().trim().isEmpty()) {
-            System.out.println("Erro: O nome do medicamento é obrigatório.");
-            return;
+            throw new MedicamentoInvalidoException("O nome do medicamento é obrigatório.");
+        }
+        if (medicamento.getDosagem() == null || medicamento.getDosagem().trim().isEmpty()) {
+            throw new MedicamentoInvalidoException("A dosagem do medicamento é obrigatória.");
         }
 
         medicamentoRepository.salvar(medicamento);
         System.out.println("Sucesso: Medicamento '" + medicamento.getNome() + "' cadastrado com sucesso!");
     }
 
-    /**
-     * Retorna a lista de todos os medicamentos cadastrados.
-     */
     public List<Medicamento> listarMedicamentos() {
         return medicamentoRepository.buscarTodos();
     }
 
-    /**
-     * Busca um medicamento específico utilizando o seu ID.
-     */
     public Medicamento buscarMedicamentoPorId(int id) {
         if (id <= 0) {
-            System.out.println("Erro: ID inválido para busca de medicamento.");
-            return null;
+            throw new MedicamentoInvalidoException("ID inválido para busca. Deve ser maior que zero.");
         }
-        return medicamentoRepository.buscarPorId(id);
+        Medicamento medicamento = medicamentoRepository.buscarPorId(id);
+        if (medicamento == null) {
+            throw new EntidadeNaoEncontradaException("Medicamento com ID " + id + " não encontrado.");
+        }
+        return medicamento;
     }
 
-    /**
-     * Remove um medicamento do sistema pelo ID.
-     */
     public void removerMedicamento(int id) {
-        Medicamento medicamentoExistente = medicamentoRepository.buscarPorId(id);
-        
-        if (medicamentoExistente == null) {
-            System.out.println("Erro: Não é possível remover. Medicamento não encontrado no sistema.");
-            return;
+        if (id <= 0) {
+            throw new MedicamentoInvalidoException("ID inválido para remoção. Deve ser maior que zero.");
         }
-
+        if (medicamentoRepository.buscarPorId(id) == null) {
+            throw new EntidadeNaoEncontradaException("Não é possível remover. Medicamento com ID " + id + " não encontrado.");
+        }
         medicamentoRepository.deletar(id);
         System.out.println("Medicamento ID " + id + " removido do sistema com sucesso.");
     }

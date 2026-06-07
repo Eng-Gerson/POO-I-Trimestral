@@ -7,34 +7,23 @@ import java.util.List;
 
 public class DepartamentoRepository {
 
-    // Nome do ficheiro binário onde os dados dos departamentos serão armazenados
     private static final String FILE_NAME = "departamentos.dat";
     private List<Departamento> listaDepartamentos;
 
     public DepartamentoRepository() {
-        // Inicializa a lista carregando o que já existe no ficheiro
         this.listaDepartamentos = carregarDados();
     }
 
-    /**
-     * Guarda um novo departamento e atualiza o ficheiro de objetos.
-     */
     public void salvar(Departamento departamento) {
         listaDepartamentos.add(departamento);
         gravarDados();
         System.out.println("Departamento salvo com sucesso no ficheiro!");
     }
 
-    /**
-     * Retorna a lista atual de departamentos na memória.
-     */
     public List<Departamento> buscarTodos() {
         return listaDepartamentos;
     }
 
-    /**
-     * Procura um departamento pelo ID.
-     */
     public Departamento buscarPorId(int id) {
         for (Departamento d : listaDepartamentos) {
             if (d.getIdDepartamento() == id) {
@@ -44,9 +33,6 @@ public class DepartamentoRepository {
         return null;
     }
 
-    /**
-     * Atualiza os dados de um departamento existente e reescreve o ficheiro.
-     */
     public void atualizar(Departamento departamentoAtualizado) {
         boolean atualizado = false;
         for (int i = 0; i < listaDepartamentos.size(); i++) {
@@ -57,7 +43,7 @@ public class DepartamentoRepository {
                 break;
             }
         }
-        
+
         if (atualizado) {
             gravarDados();
             System.out.println("Departamento atualizado com sucesso no ficheiro!");
@@ -66,9 +52,6 @@ public class DepartamentoRepository {
         }
     }
 
-    /**
-     * Remove um departamento e atualiza o ficheiro de objetos.
-     */
     public void deletar(int id) {
         Departamento departamento = buscarPorId(id);
         if (departamento != null) {
@@ -80,13 +63,6 @@ public class DepartamentoRepository {
         }
     }
 
-    // ==========================================
-    // MÉTODOS AUXILIARES DE LEITURA E ESCRITA
-    // ==========================================
-
-    /**
-     * Grava a lista completa de departamentos no ficheiro de objetos.
-     */
     private void gravarDados() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(listaDepartamentos);
@@ -95,13 +71,10 @@ public class DepartamentoRepository {
         }
     }
 
-    /**
-     * Carrega a lista do ficheiro de objetos. Se o ficheiro não existir, cria uma lista vazia.
-     */
     @SuppressWarnings("unchecked")
     private List<Departamento> carregarDados() {
         File arquivo = new File(FILE_NAME);
-        
+
         if (!arquivo.exists()) {
             return new ArrayList<>();
         }

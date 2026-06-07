@@ -2,89 +2,70 @@ package service;
 
 import model.Consulta;
 import repository.ConsultaRepository;
+import exception.ConsultaInvalidaException;
+import exception.EntidadeNaoEncontradaException;
+
 import java.util.List;
 
 public class ConsultaService {
 
     private ConsultaRepository consultaRepository;
 
-    // Construtor que inicializa o repositório de consultas
     public ConsultaService() {
         this.consultaRepository = new ConsultaRepository();
     }
 
-    /**
-     * Regra de Negócio para Agendar uma Consulta.
-     * Garante que nenhum campo lógico fique vazio e que os envolvidos existam.
-     */
     public void agendarConsulta(Consulta consulta) {
-        // 1. Validação básica de nulidade
         if (consulta == null) {
-            System.out.println("Erro: Os dados da consulta não foram fornecidos.");
-            return;
+            throw new ConsultaInvalidaException("Os dados da consulta não foram fornecidos.");
         }
-
-        // 2. Regra: Atributos obrigatórios de identificação
         if (consulta.getIdConsulta() <= 0) {
-            System.out.println("Erro: ID da consulta deve ser maior que zero.");
-            return;
+            throw new ConsultaInvalidaException("ID da consulta inválido. Deve ser maior que zero.");
         }
-
-        // 3. Regra: Uma consulta precisa obrigatoriamente de um Paciente cadastrado
+        if (consultaRepository.buscarPorId(consulta.getIdConsulta()) != null) {
+            throw new ConsultaInvalidaException("Já existe uma consulta registada com o ID: " + consulta.getIdConsulta());
+        }
         if (consulta.getPaciente() == null) {
-            System.out.println("Erro: Não é possível agendar uma consulta sem um paciente vinculado.");
-            return;
+            throw new ConsultaInvalidaException("Não é possível agendar uma consulta sem um paciente vinculado.");
         }
-
-        // 4. Regra: Uma consulta precisa obrigatoriamente de um Profissional (Médico/Enfermeiro)
         if (consulta.getProfissional() == null) {
-            System.out.println("Erro: Não é possível agendar uma consulta sem um profissional de saúde vinculado.");
-            return;
+            throw new ConsultaInvalidaException("Não é possível agendar uma consulta sem um profissional de saúde vinculado.");
         }
-
-        // 5. Regra: A data/hora da consulta não pode estar vazia
         if (consulta.getData() == null || consulta.getData().trim().isEmpty()) {
-            System.out.println("Erro: A data e hora da consulta devem ser especificadas.");
-            return;
+            throw new ConsultaInvalidaException("A data da consulta é obrigatória.");
+        }
+        if (consulta.getHoras() == null || consulta.getHoras().trim().isEmpty()) {
+            throw new ConsultaInvalidaException("A hora da consulta é obrigatória.");
         }
 
-        // Se passar por todas as validações, salva no repositório
         consultaRepository.salvar(consulta);
         System.out.println("Consulta ID " + consulta.getIdConsulta() + " agendada com sucesso para o paciente " + consulta.getPaciente().getNome());
     }
 
-    /**
-     * Retorna a lista de todas as consultas agendadas.
-     */
     public List<Consulta> listarConsultas() {
         return consultaRepository.buscarTodos();
     }
 
-    /**
-     * Busca uma consulta específica utilizando o ID.
-     */
     public Consulta buscarConsultaPorId(int id) {
         if (id <= 0) {
-            System.out.println("Erro: ID inválido para busca de consulta.");
-            return null;
+            throw new ConsultaInvalidaException("ID inválido para busca. Deve ser maior que zero.");
         }
-        return consultaRepository.buscarPorId(id);
+        Consulta consulta = consultaRepository.buscarPorId(id);
+        if (consulta == null) {
+            throw new EntidadeNaoEncontradaException("Consulta com ID " + id + " não encontrada.");
+        }
+        return consulta;
     }
 
-    /**
-     * Regra de Negócio para Cancelar uma Consulta.
-     * Verifica se a consulta realmente existe antes de tentar removê-la.
-     */
     public void cancelarConsulta(int id) {
-        Consulta consultaExistente = consultaRepository.buscarPorId(id);
-
-        if (consultaExistente == null) {
-            System.out.println("Erro: Não foi possível cancelar. Consulta não encontrada no sistema.");
-            return;
+        if (id <= 0) {
+            throw new ConsultaInvalidaException("ID inválido para cancelamento. Deve ser maior que zero.");
         }
-
-        // Remove a consulta do repositório
+        if (consultaRepository.buscarPorId(id) == null) {
+            throw new EntidadeNaoEncontradaException("Não é possível cancelar. Consulta com ID " + id + " não encontrada.");
+        }
         consultaRepository.deletar(id);
         System.out.println("Consulta ID " + id + " cancelada com sucesso.");
+
     }
 }

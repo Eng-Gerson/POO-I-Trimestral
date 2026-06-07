@@ -1,79 +1,122 @@
 package menu;
 
+import io.ConsoleInput;
 import service.PacienteService;
+import exception.EntidadeNaoEncontradaException;
+import exception.PacienteInvalidoException;
 import model.*;
-import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MenuPaciente {
     private static PacienteService service = new PacienteService();
 
-    public static void exibir(BufferedReader br) throws IOException {
-        int subOpcao = -1;
+    public static void exibir() {
+        int op = -1;
         do {
             System.out.println("\n--- MENU PACIENTES ---");
             System.out.println("1. Cadastrar Paciente");
-            System.out.println("2. Listar todos");
-            System.out.println("3. Ver dados completos");
+            System.out.println("2. Listar todos (Resumo)");
+            System.out.println("3. Ver dados completos de um paciente");
+            System.out.println("4. Remover Paciente");
             System.out.println("0. Voltar");
-            System.out.print("Opção: ");
-            
-            subOpcao = Integer.parseInt(br.readLine());
 
-            switch (subOpcao) {
-                case 1: cadastrar(br); break;
+            op = ConsoleInput.lerInteiro("Opção: ");
+
+            switch (op) {
+                case 1: cadastrar(); break;
                 case 2: listarResumo(); break;
-                case 3: verDadosCompletos(br); break;
+                case 3: verDadosCompletos(); break;
+                case 4: remover(); break;
+                case 0: System.out.println("A voltar ao menu principal..."); break;
+                default: System.out.println("Opção inválida!");
             }
-        } while (subOpcao != 0);
+        } while (op != 0);
     }
 
-    private static void cadastrar(BufferedReader br) throws IOException {
-        System.out.print("ID: "); int id = Integer.parseInt(br.readLine());
-        System.out.print("Nome: "); String nome = br.readLine();
-        System.out.print("Idade: "); int idade = Integer.parseInt(br.readLine());
-        System.out.print("Altura (cm): "); int altura = Integer.parseInt(br.readLine());
-        System.out.print("Peso (kg): "); float peso = Float.parseFloat(br.readLine());
-        System.out.print("Data de Nascimento: "); String dataNasc = br.readLine();
-        System.out.print("Género (M/F): "); char genero = br.readLine().charAt(0);
-        System.out.print("Endereço: "); String endereco = br.readLine();
-        System.out.print("Contacto: "); String contacto = br.readLine();
-        System.out.print("Contacto de Emergência: "); String contatoEmerg = br.readLine();
+    private static void cadastrar() {
+        System.out.println("\n--- CADASTRAR PACIENTE ---");
+        try {
+            int id          = ConsoleInput.lerInteiro("ID: ");
+            String nome     = ConsoleInput.lerString("Nome: ");
+            int idade       = ConsoleInput.lerInteiro("Idade: ");
+            int altura      = ConsoleInput.lerInteiro("Altura (cm): ");
+            float peso      = (float) ConsoleInput.lerDecimal("Peso (kg): ");
+            String dataNasc = ConsoleInput.lerString("Data de Nascimento (dd/mm/aaaa): ");
+            char genero     = ConsoleInput.lerString("Género (M/F): ").charAt(0);
+            String endereco = ConsoleInput.lerString("Endereço: ");
+            String contacto = ConsoleInput.lerString("Contacto: ");
+            String contatoEmerg = ConsoleInput.lerString("Contacto de Emergência: ");
 
-        // Criando o objeto com o teu construtor complexo
-        Paciente p = new Paciente(
-            id, altura, peso, idade, nome, dataNasc, genero, endereco,
-            new ArrayList<>(Arrays.asList(contacto)),
-            new ArrayList<>(Arrays.asList(contatoEmerg)),
-            new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
-        );
-        
-        service.cadastrarPaciente(p);
-        System.out.println("Paciente cadastrado com sucesso!");
+            Paciente p = new Paciente(
+                id, altura, peso, idade, nome, dataNasc, genero, endereco,
+                new ArrayList<>(Arrays.asList(contacto)),
+                new ArrayList<>(Arrays.asList(contatoEmerg)),
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
+            );
+
+            service.cadastrarPaciente(p);
+            System.out.println("Sucesso: Paciente cadastrado com sucesso!");
+
+        } catch (PacienteInvalidoException e) {
+            System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        }
     }
 
     private static void listarResumo() {
-        service.listarPacientes().forEach(p -> 
-            System.out.println("ID: " + p.getIdPaciente() + " | Nome: " + p.getNome()));
+        System.out.println("\n--- LISTA DE PACIENTES ---");
+        List<Paciente> lista = service.listarPacientes();
+
+        if (lista.isEmpty()) {
+            System.out.println("Nenhum paciente registado até ao momento.");
+            return;
+        }
+
+        lista.forEach(p ->
+            System.out.println("ID: " + p.getIdPaciente() + " | Nome: " + p.getNome() + " | Idade: " + p.getIdade()));
     }
 
-    private static void verDadosCompletos(BufferedReader br) throws IOException {
-        System.out.print("ID do paciente: ");
-        int id = Integer.parseInt(br.readLine());
-        Paciente p = service.buscarPacientePorId(id);
-        
-        if (p != null) {
+    private static void verDadosCompletos() {
+        System.out.println("\n--- VER DADOS DO PACIENTE ---");
+        int id = ConsoleInput.lerInteiro("ID do paciente: ");
+
+        try {
+            Paciente p = service.buscarPacientePorId(id);
+
             System.out.println("\n--- FICHA COMPLETA ---");
+            System.out.println("ID: " + p.getIdPaciente());
             System.out.println("Nome: " + p.getNome());
             System.out.println("Idade: " + p.getIdade() + " anos");
             System.out.println("Peso: " + p.getPeso() + "kg | Altura: " + p.getAltura() + "cm");
+            System.out.println("Data de Nascimento: " + p.getDataNacimento());
+            System.out.println("Género: " + p.getGenero());
             System.out.println("Endereço: " + p.getEndereco());
             System.out.println("Contacto: " + p.getContacto());
             System.out.println("Emergência: " + p.getContactoEmergencia());
-        } else {
-            System.out.println("Paciente não encontrado.");
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        }
+    }
+
+    private static void remover() {
+        System.out.println("\n--- REMOVER PACIENTE ---");
+        int id = ConsoleInput.lerInteiro("ID do paciente a remover: ");
+
+        try {
+            service.removerPaciente(id);
+            System.out.println("Sucesso: Paciente ID " + id + " removido com sucesso.");
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
         }
     }
 }

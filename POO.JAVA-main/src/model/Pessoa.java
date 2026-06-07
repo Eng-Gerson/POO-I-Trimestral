@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Pessoa implements Serializable {
+public abstract class Pessoa implements Serializable {
 
     protected String nome;
     protected char genero;

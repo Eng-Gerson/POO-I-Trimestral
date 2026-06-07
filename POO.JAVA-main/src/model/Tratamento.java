@@ -14,7 +14,6 @@ public class Tratamento implements Serializable {
     private Paciente paciente;
     private List<Profissional> profissionais;
 
-    // Construtor atualizado para incluir o idTratamento
     public Tratamento(int idTratamento, String tipo, String descricao, String dataInicio, String dataFim, 
                       Paciente paciente, List<Profissional> profissionais) {
         this.idTratamento = idTratamento;
@@ -26,7 +25,6 @@ public class Tratamento implements Serializable {
         this.profissionais = profissionais;
     }
 
-    // Getters e Setters
     public int getIdTratamento() { return idTratamento; }
     public void setIdTratamento(int idTratamento) { this.idTratamento = idTratamento; }
 

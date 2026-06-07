@@ -1,81 +1,171 @@
 package menu;
 
-import service.*;
+import io.ConsoleInput;
+import service.ConsultaService;
+import service.ExameService;
+import service.PacienteService;
+import exception.EntidadeNaoEncontradaException;
+import exception.ExameInvalidoException;
 import model.*;
-import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.util.List;
 
 public class MenuExame {
-   // 1. Instanciamos primeiro o serviço necessário
     private static ConsultaService consultaService = new ConsultaService();
-    
-    // 2. Passamos esse serviço para o ExameService no construtor
     private static ExameService exameService = new ExameService(consultaService);
     private static PacienteService pacienteService = new PacienteService();
 
-    public static void exibir(BufferedReader br) throws IOException {
+    public static void exibir() {
         int op = -1;
         do {
-            System.out.println("\n--- MENU EXAMES E CONSULTAS ---");
+            System.out.println("\n--- MENU EXAMES ---");
             System.out.println("1. Marcar Exame");
-            System.out.println("2. Buscar Exame de um Paciente");
-            System.out.println("3. Listar Consultas de um Paciente");
-            System.out.println("4. Listar Consultas de um Profissional");
-            System.out.println("5. Listar Consultas por Data");
+            System.out.println("2. Buscar Exame por ID");
+            System.out.println("3. Listar Exames de um Paciente");
+            System.out.println("4. Listar Consultas de um Paciente");
+            System.out.println("5. Listar Consultas de um Profissional");
+            System.out.println("6. Listar Consultas por Data");
             System.out.println("0. Voltar");
-            System.out.print("Escolha: ");
-            
-            op = Integer.parseInt(br.readLine());
+
+            op = ConsoleInput.lerInteiro("Opção: ");
+
             switch (op) {
-                case 1: cadastrarExame(br); break;
-                case 2: buscarExamePorPaciente(br); break;
-                case 3: listarConsultasPorPaciente(br); break;
-                case 4: listarConsultasPorProfissional(br); break;
-                case 5: listarConsultasPorData(br); break;
+                case 1: cadastrarExame(); break;
+                case 2: buscarExame(); break;
+                case 3: listarExamesPorPaciente(); break;
+                case 4: listarConsultasPorPaciente(); break;
+                case 5: listarConsultasPorProfissional(); break;
+                case 6: listarConsultasPorData(); break;
+                case 0: System.out.println("A voltar ao menu principal..."); break;
+                default: System.out.println("Opção inválida!");
             }
         } while (op != 0);
     }
 
-    private static void cadastrarExame(BufferedReader br) throws IOException {
-        System.out.print("ID Exame: "); String id = br.readLine();
-        System.out.print("Tipo: "); String tipo = br.readLine();
-        System.out.print("Data: "); String data = br.readLine();
-        System.out.print("ID Consulta Associada: "); int idCons = Integer.parseInt(br.readLine());
-        
-        Consulta c = consultaService.buscarConsultaPorId(idCons);
-        if (c != null) {
+    private static void cadastrarExame() {
+        System.out.println("\n--- MARCAR EXAME ---");
+        try {
+            String id   = ConsoleInput.lerString("ID do Exame: ");
+            String tipo = ConsoleInput.lerString("Tipo (ex: Hemograma, Raio-X): ");
+            String data = ConsoleInput.lerString("Data (dd/mm/aaaa): ");
+
+            int idCons    = ConsoleInput.lerInteiro("ID da Consulta Associada: ");
+            Consulta c    = consultaService.buscarConsultaPorId(idCons);
+
             Exame e = new Exame(tipo, id, data, "Pendente", "N/A", c.getPaciente(), c);
             exameService.solicitarExame(e);
-            System.out.println("Exame marcado!");
+            System.out.println("Sucesso: Exame marcado com sucesso!");
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO DE REGISTO]: " + e.getMessage());
+        } catch (ExameInvalidoException e) {
+            System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
         }
     }
 
-    private static void buscarExamePorPaciente(BufferedReader br) throws IOException {
-        System.out.print("ID do Paciente: "); int idP = Integer.parseInt(br.readLine());
-        exameService.listarExames().stream()
-            .filter(e -> e.getPaciente().getIdPaciente() == idP)
-            .forEach(System.out::println);
+    private static void buscarExame() {
+        System.out.println("\n--- BUSCAR EXAME ---");
+        String id = ConsoleInput.lerString("ID do Exame: ");
+
+        try {
+            Exame e = exameService.buscarExamePorId(id);
+
+            System.out.println("\n--- DADOS DO EXAME ---");
+            System.out.println("ID: " + e.getIdExame());
+            System.out.println("Tipo: " + e.getTipo());
+            System.out.println("Data: " + e.getData());
+            System.out.println("Resultado: " + e.getResultado());
+            System.out.println("Observações: " + e.getObservacoes());
+            System.out.println("Paciente: " + e.getPaciente().getNome());
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        }
     }
 
-    private static void listarConsultasPorPaciente(BufferedReader br) throws IOException {
-        System.out.print("ID do Paciente: "); int id = Integer.parseInt(br.readLine());
-        consultaService.listarConsultas().stream()
-            .filter(c -> c.getPaciente().getIdPaciente() == id)
-            .forEach(System.out::println);
+    private static void listarExamesPorPaciente() {
+        System.out.println("\n--- EXAMES DE UM PACIENTE ---");
+        int idP = ConsoleInput.lerInteiro("ID do Paciente: ");
+
+        try {
+            pacienteService.buscarPacientePorId(idP);
+
+            long total = exameService.listarExames().stream()
+                .filter(e -> e.getPaciente().getIdPaciente() == idP)
+                .peek(e -> System.out.println(" - ID: " + e.getIdExame()
+                    + " | Tipo: " + e.getTipo()
+                    + " | Data: " + e.getData()
+                    + " | Resultado: " + e.getResultado()))
+                .count();
+
+            if (total == 0) {
+                System.out.println("Nenhum exame encontrado para este paciente.");
+            }
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        }
     }
 
-    private static void listarConsultasPorProfissional(BufferedReader br) throws IOException {
-        System.out.print("ID do Profissional: "); int id = Integer.parseInt(br.readLine());
-        consultaService.listarConsultas().stream()
+    private static void listarConsultasPorPaciente() {
+        System.out.println("\n--- CONSULTAS DE UM PACIENTE ---");
+        int id = ConsoleInput.lerInteiro("ID do Paciente: ");
+
+        try {
+            pacienteService.buscarPacientePorId(id);
+
+            long total = consultaService.listarConsultas().stream()
+                .filter(c -> c.getPaciente().getIdPaciente() == id)
+                .peek(c -> System.out.println(" - ID: " + c.getIdConsulta()
+                    + " | Data: " + c.getData()
+                    + " às " + c.getHoras()
+                    + " | Tipo: " + c.getTipo()))
+                .count();
+
+            if (total == 0) {
+                System.out.println("Nenhuma consulta encontrada para este paciente.");
+            }
+
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
+        }
+    }
+
+    private static void listarConsultasPorProfissional() {
+        System.out.println("\n--- CONSULTAS DE UM PROFISSIONAL ---");
+        int id = ConsoleInput.lerInteiro("ID do Profissional: ");
+
+        long total = consultaService.listarConsultas().stream()
             .filter(c -> c.getProfissional().getIdProfissional() == id)
-            .forEach(System.out::println);
+            .peek(c -> System.out.println(" - ID: " + c.getIdConsulta()
+                + " | Data: " + c.getData()
+                + " às " + c.getHoras()
+                + " | Paciente: " + c.getPaciente().getNome()))
+            .count();
+
+        if (total == 0) {
+            System.out.println("Nenhuma consulta encontrada para este profissional.");
+        }
     }
 
-    private static void listarConsultasPorData(BufferedReader br) throws IOException {
-        System.out.print("Data (dd/mm/aaaa): "); String data = br.readLine();
-        consultaService.listarConsultas().stream()
+    private static void listarConsultasPorData() {
+        System.out.println("\n--- CONSULTAS POR DATA ---");
+        String data = ConsoleInput.lerString("Data (dd/mm/aaaa): ");
+
+        long total = consultaService.listarConsultas().stream()
             .filter(c -> c.getData().equals(data))
-            .forEach(System.out::println);
+            .peek(c -> System.out.println(" - ID: " + c.getIdConsulta()
+                + " | Hora: " + c.getHoras()
+                + " | Paciente: " + c.getPaciente().getNome()
+                + " | Profissional: " + c.getProfissional().getNome()))
+            .count();
+
+        if (total == 0) {
+            System.out.println("Nenhuma consulta encontrada para a data " + data + ".");
+        }
     }
 }

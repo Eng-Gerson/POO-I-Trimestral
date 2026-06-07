@@ -8,12 +8,10 @@ public class MenuPrincipal {
         int opcao = -1;
         do {
             System.out.println("\n====================================");
-            System.out.println("     SISTEMA DE GESTÃO HCM - V2.0   ");
+            System.out.println("     SISTEMA DE GESTAO HCM    ");
             System.out.println("====================================");
-            System.out.println("--- GESTÃO DE RECURSOS ---");
             System.out.println("1. Pacientes");
             System.out.println("2. Profissionais");
-            System.out.println("--- GESTÃO CLÍNICA ---");
             System.out.println("3. Consultas");
             System.out.println("4. Exames");
             System.out.println("5. Internamentos");
@@ -22,7 +20,7 @@ public class MenuPrincipal {
             System.out.println("0. Sair do Sistema");
             
             // Usando a nova classe utilitária de leitura
-            opcao = ConsoleInput.lerInteiro("Escolha uma área de gestão: ");
+            opcao = ConsoleInput.lerInteiro("Escolha uma opcao: ");
 
             switch (opcao) {
                 case 1: MenuPaciente.exibir(); break;

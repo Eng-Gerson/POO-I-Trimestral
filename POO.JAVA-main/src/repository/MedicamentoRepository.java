@@ -7,34 +7,23 @@ import java.util.List;
 
 public class MedicamentoRepository {
 
-    // Nome do ficheiro binário onde os dados dos medicamentos serão armazenados
     private static final String FILE_NAME = "medicamentos.dat";
     private List<Medicamento> listaMedicamentos;
 
     public MedicamentoRepository() {
-        // Inicializa a lista carregando o que já existe no ficheiro
         this.listaMedicamentos = carregarDados();
     }
 
-    /**
-     * Guarda um novo medicamento e atualiza o ficheiro de objetos.
-     */
     public void salvar(Medicamento medicamento) {
         listaMedicamentos.add(medicamento);
         gravarDados();
         System.out.println("Medicamento salvo com sucesso no ficheiro!");
     }
 
-    /**
-     * Retorna a lista atual de medicamentos na memória.
-     */
     public List<Medicamento> buscarTodos() {
         return listaMedicamentos;
     }
 
-    /**
-     * Procura um medicamento pelo ID.
-     */
     public Medicamento buscarPorId(int id) {
         for (Medicamento m : listaMedicamentos) {
             if (m.getIdMedicamento() == id) {
@@ -44,9 +33,6 @@ public class MedicamentoRepository {
         return null;
     }
 
-    /**
-     * Atualiza os dados de um medicamento existente e reescreve o ficheiro.
-     */
     public void atualizar(Medicamento medicamentoAtualizado) {
         boolean atualizado = false;
         for (int i = 0; i < listaMedicamentos.size(); i++) {
@@ -57,7 +43,6 @@ public class MedicamentoRepository {
                 break;
             }
         }
-        
         if (atualizado) {
             gravarDados();
             System.out.println("Medicamento atualizado com sucesso no ficheiro!");
@@ -66,9 +51,6 @@ public class MedicamentoRepository {
         }
     }
 
-    /**
-     * Remove um medicamento e atualiza o ficheiro de objetos.
-     */
     public void deletar(int id) {
         Medicamento medicamento = buscarPorId(id);
         if (medicamento != null) {
@@ -80,13 +62,6 @@ public class MedicamentoRepository {
         }
     }
 
-    // ==========================================
-    // MÉTODOS AUXILIARES DE LEITURA E ESCRITA
-    // ==========================================
-
-    /**
-     * Grava a lista completa de medicamentos no ficheiro de objetos.
-     */
     private void gravarDados() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(listaMedicamentos);
@@ -95,17 +70,12 @@ public class MedicamentoRepository {
         }
     }
 
-    /**
-     * Carrega a lista do ficheiro de objetos. Se o ficheiro não existir, cria uma lista vazia.
-     */
     @SuppressWarnings("unchecked")
     private List<Medicamento> carregarDados() {
         File arquivo = new File(FILE_NAME);
-        
         if (!arquivo.exists()) {
             return new ArrayList<>();
         }
-
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))) {
             return (List<Medicamento>) ois.readObject();
         } catch (FileNotFoundException e) {

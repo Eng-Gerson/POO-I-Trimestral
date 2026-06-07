@@ -2,6 +2,9 @@ package service;
 
 import model.Profissional;
 import repository.ProfissionalRepository;
+import exception.EntidadeNaoEncontradaException;
+import exception.ProfissionalInvalidoException;
+
 import java.util.List;
 
 public class ProfissionalService {
@@ -12,23 +15,24 @@ public class ProfissionalService {
         this.profissionalRepository = new ProfissionalRepository();
     }
 
-    /**
-     * Cadastra um novo profissional de saúde no sistema aplicando regras de validação.
-     */
     public void cadastrarProfissional(Profissional profissional) {
         if (profissional == null) {
-            System.out.println("Erro Crítico: Os dados do profissional não foram fornecidos.");
-            return;
+            throw new ProfissionalInvalidoException("Os dados do profissional não foram fornecidos.");
         }
-
-        // Assumindo que a classe Profissional herda de Pessoa ou tem getIdProfissional()
         if (profissional.getIdProfissional() <= 0) {
-            System.out.println("Erro: ID do profissional inválido. Deve ser maior que zero.");
-            return;
+            throw new ProfissionalInvalidoException("ID do profissional inválido. Deve ser maior que zero.");
+        }
+        if (profissionalRepository.buscarPorId(profissional.getIdProfissional()) != null) {
+            throw new ProfissionalInvalidoException("Já existe um profissional registado com o ID: " + profissional.getIdProfissional());
         }
         if (profissional.getNome() == null || profissional.getNome().trim().isEmpty()) {
-            System.out.println("Erro: O nome do profissional é obrigatório.");
-            return;
+            throw new ProfissionalInvalidoException("O nome do profissional é obrigatório.");
+        }
+        if (profissional.getNumeroCedulaProfissional() == null || profissional.getNumeroCedulaProfissional().trim().isEmpty()) {
+            throw new ProfissionalInvalidoException("O número da cédula profissional é obrigatório.");
+        }
+        if (profissional.getDepartamento() == null) {
+            throw new ProfissionalInvalidoException("O profissional deve estar associado a um departamento.");
         }
 
         profissionalRepository.salvar(profissional);
@@ -41,20 +45,22 @@ public class ProfissionalService {
 
     public Profissional buscarProfissionalPorId(int id) {
         if (id <= 0) {
-            System.out.println("Erro: ID inválido para busca de profissional.");
-            return null;
+            throw new ProfissionalInvalidoException("ID inválido para busca. Deve ser maior que zero.");
         }
-        return profissionalRepository.buscarPorId(id);
+        Profissional profissional = profissionalRepository.buscarPorId(id);
+        if (profissional == null) {
+            throw new EntidadeNaoEncontradaException("Profissional com ID " + id + " não encontrado.");
+        }
+        return profissional;
     }
 
     public void removerProfissional(int id) {
-        Profissional profissionalExistente = profissionalRepository.buscarPorId(id);
-        
-        if (profissionalExistente == null) {
-            System.out.println("Erro: Não é possível remover. Profissional não encontrado no sistema.");
-            return;
+        if (id <= 0) {
+            throw new ProfissionalInvalidoException("ID inválido para remoção. Deve ser maior que zero.");
         }
-
+        if (profissionalRepository.buscarPorId(id) == null) {
+            throw new EntidadeNaoEncontradaException("Não é possível remover. Profissional com ID " + id + " não encontrado.");
+        }
         profissionalRepository.deletar(id);
         System.out.println("Profissional ID " + id + " removido do sistema com sucesso.");
     }
