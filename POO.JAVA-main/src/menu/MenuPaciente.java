@@ -23,7 +23,7 @@ public class MenuPaciente {
             System.out.println("4. Remover Paciente");
             System.out.println("0. Voltar");
 
-            op = ConsoleInput.lerInteiro("Opção: ");
+            op = ConsoleInput.lerInteiro("Opcao: ");
 
             switch (op) {
                 case 1: cadastrar(); break;
