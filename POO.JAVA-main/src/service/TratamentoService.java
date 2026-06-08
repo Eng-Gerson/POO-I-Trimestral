@@ -35,7 +35,6 @@ public class TratamentoService {
             throw new TratamentoInvalidoException("Não é possível registar um tratamento sem um paciente vinculado.");
         }
 
-        // NOVO: Validar que o tratamento deve ter pelo menos um profissional
         if (tratamento.getProfissionais() == null || tratamento.getProfissionais().isEmpty()) {
             throw new TratamentoInvalidoException("Um tratamento deve ter pelo menos um profissional vinculado.");
         }
@@ -48,17 +47,14 @@ public class TratamentoService {
             throw new TratamentoInvalidoException("A data de início do tratamento é obrigatória.");
         }
 
-        // NOVO: Validar formato da data de início
         if (!validadorData.validar(tratamento.getDataInicio())) {
             throw new TratamentoInvalidoException("Data de início inválida. Use o formato dd/MM/yyyy.");
         }
 
-        // NOVO: Validar data de fim se fornecida
         if (tratamento.getDataFim() != null && !tratamento.getDataFim().trim().isEmpty()) {
             if (!validadorData.validar(tratamento.getDataFim())) {
                 throw new TratamentoInvalidoException("Data de término inválida. Use o formato dd/MM/yyyy.");
             }
-            // Validar que data fim é depois de data início
             if (!validadorData.validarIntervaloData(tratamento.getDataInicio(), tratamento.getDataFim())) {
                 throw new TratamentoInvalidoException("A data de término deve ser igual ou depois da data de início.");
             }
@@ -104,9 +100,6 @@ public class TratamentoService {
         System.out.println("Sucesso: Tratamento " + id + " encerrado com sucesso!");
     }
 
-    /**
-     * NOVO: Marca um tratamento como concluído
-     */
     public void concluirTratamento(int id) {
         Tratamento tratamento = this.buscarPorId(id);
         tratamento.concluir();
