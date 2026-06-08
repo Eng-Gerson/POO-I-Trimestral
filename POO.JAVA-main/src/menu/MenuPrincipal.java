@@ -1,6 +1,6 @@
 package menu;
 
-import io.ConsoleInput; // Importando o teu leitor utilitário
+import io.ConsoleInput; 
 
 public class MenuPrincipal {
 
@@ -20,7 +20,6 @@ public class MenuPrincipal {
             System.out.println("------------------------------------");
             System.out.println("0. Sair do Sistema");
             
-            // Usando a nova classe utilitária de leitura
             opcao = ConsoleInput.lerInteiro("Escolha uma opcao: ");
 
             switch (opcao) {
