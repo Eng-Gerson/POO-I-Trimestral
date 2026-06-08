@@ -13,7 +13,7 @@ public class Tratamento implements Serializable {
     private String dataFim;
     private Paciente paciente;
     private List<Profissional> profissionais;
-    private boolean concluido; // Novo campo para indicar conclusão do tratamento
+    private boolean concluido;  
 
     public Tratamento(int idTratamento, String tipo, String descricao, String dataInicio, String dataFim, 
                       Paciente paciente, List<Profissional> profissionais) {
@@ -24,7 +24,7 @@ public class Tratamento implements Serializable {
         this.dataFim = dataFim;
         this.paciente = paciente;
         this.profissionais = profissionais;
-        this.concluido = false; // Iniciado como não concluído
+        this.concluido = false;  
     }
 
     public int getIdTratamento() { return idTratamento; }
@@ -51,16 +51,10 @@ public class Tratamento implements Serializable {
     public boolean isConcluido() { return concluido; }
     public void setConcluido(boolean concluido) { this.concluido = concluido; }
 
-    /**
-     * Marca o tratamento como concluído
-     */
     public void concluir() {
         this.concluido = true;
     }
 
-    /**
-     * Obtém o status do tratamento
-     */
     public String getStatus() {
         if (concluido) {
             return "Concluído";
