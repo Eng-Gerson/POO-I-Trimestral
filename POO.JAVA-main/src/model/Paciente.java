@@ -8,7 +8,7 @@ public class Paciente extends Pessoa {
     private int idPaciente;
     private int altura;
     private float peso;
-    private String dataNacimento; // Campo obrigatório para cálculo de idade
+    private String dataNacimento; 
     private String endereco;
     private List<String> contactoEmergencia;
     private List<Consulta> consultas;
@@ -16,7 +16,6 @@ public class Paciente extends Pessoa {
     private List<Tratamento> tratamentos;
     private List<Internamento> internamentos;
 
-    // Construtor atualizado sem o parâmetro idade
     public Paciente(int idPaciente, int altura, float peso, String nome, String dataNacimento, char genero,
             String endereco, List<String> contacto, List<String> contactoEmergencia, List<Consulta> consultas,
             List<Exame> exames, List<Tratamento> tratamentos, List<Internamento> internamentos) {
@@ -40,9 +39,6 @@ public class Paciente extends Pessoa {
         this.idPaciente = idPaciente;
     }
 
-    /**
-     * Calcula a idade dinamicamente a partir da data de nascimento
-     */
     public int getIdade() {
         if (dataNacimento == null || dataNacimento.isEmpty()) {
             return 0;
@@ -116,18 +112,6 @@ public class Paciente extends Pessoa {
     }
     public void setPeso(float peso) {
         this.peso = peso;
-    }
-
-    public void marcarConsulta(Consulta c) {
-        // Implementar quando necessário
-    }
-
-    public void cancelarConsulta(String codigo) {
-        // Implementar quando necessário
-    }
-
-    public void reagendarConsulta(String codConsulta, String novaData, String novaHora) {
-        // Implementar quando necessário
     }
 
     public List<Consulta> listarConsultas() {
