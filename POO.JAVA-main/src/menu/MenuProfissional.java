@@ -2,6 +2,7 @@ package menu;
 
 import io.ConsoleInput;
 import service.ProfissionalService;
+import service.DepartamentoService;
 import exception.EntidadeNaoEncontradaException;
 import exception.ProfissionalInvalidoException;
 import model.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class MenuProfissional {
     private static ProfissionalService service = new ProfissionalService();
+    private static DepartamentoService departamentoService = new DepartamentoService();
 
     public static void exibir() {
         int op = -1;
@@ -46,9 +48,25 @@ public class MenuProfissional {
             char genero   = ConsoleInput.lerString("Género (M/F): ").charAt(0);
             String cedula = ConsoleInput.lerString("Número da Cédula: ");
             String contacto = ConsoleInput.lerString("Contacto: ");
+            
+            // NOVO: Solicitar ID do departamento
+            System.out.println("\n--- DEPARTAMENTOS DISPONÍVEIS ---");
+            List<Departamento> departamentos = departamentoService.listarDepartamentos();
+            
+            if (departamentos.isEmpty()) {
+                System.out.println("Nenhum departamento registado no sistema.");
+                System.out.println("Por favor, registre um departamento antes de cadastrar um profissional.");
+                return;
+            }
+            
+            departamentos.forEach(d -> 
+                System.out.println("ID: " + d.getIdDepartamento() + " | Nome: " + d.getNomeDepartamento()));
+            
+            int idDept = ConsoleInput.lerInteiro("\nSelecione o ID do departamento: ");
+            Departamento depto = departamentoService.buscarDepartamentoPorId(idDept);
 
             Profissional p = new Profissional(
-                id, null,
+                id, depto,
                 new ArrayList<>(Arrays.asList(contacto)),
                 genero, nome, new ArrayList<>(), cedula
             );
@@ -58,6 +76,8 @@ public class MenuProfissional {
 
         } catch (ProfissionalInvalidoException e) {
             System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());
+        } catch (EntidadeNaoEncontradaException e) {
+            System.out.println("\n[ERRO]: " + e.getMessage());
         } catch (RuntimeException e) {
             System.out.println("\n[ERRO]: " + e.getMessage());
         }
@@ -74,7 +94,8 @@ public class MenuProfissional {
 
         lista.forEach(p ->
             System.out.println("ID: " + p.getIdProfissional() + " | Nome: " + p.getNome()
-                + " | Cédula: " + p.getNumeroCedulaProfissional()));
+                + " | Cédula: " + p.getNumeroCedulaProfissional()
+                + " | Depto: " + (p.getDepartamento() != null ? p.getDepartamento().getNomeDepartamento() : "N/A")));
     }
 
     private static void verDadosCompletos() {
@@ -92,6 +113,9 @@ public class MenuProfissional {
             System.out.println("Contactos: " + p.getContacto());
             if (p.getDepartamento() != null) {
                 System.out.println("Departamento: " + p.getDepartamento().getNomeDepartamento());
+                System.out.println("ID Departamento: " + p.getDepartamento().getIdDepartamento());
+            } else {
+                System.out.println("Departamento: Não atribuído");
             }
 
         } catch (EntidadeNaoEncontradaException e) {

@@ -4,15 +4,18 @@ import model.Paciente;
 import repository.PacienteRepository;
 import exception.EntidadeNaoEncontradaException;
 import exception.PacienteInvalidoException;
+import validation.ValidadorData;
 
 import java.util.List;
 
 public class PacienteService {
 
     private PacienteRepository pacienteRepository;
+    private ValidadorData validadorData;
 
     public PacienteService() {
         this.pacienteRepository = new PacienteRepository();
+        this.validadorData = new ValidadorData();
     }
 
     public void cadastrarPaciente(Paciente paciente) {
@@ -37,8 +40,12 @@ public class PacienteService {
         if (paciente.getAltura() <= 0) {
             throw new PacienteInvalidoException("A altura do paciente deve ser maior que zero.");
         }
-        if (paciente.getIdade() < 0) {
-            throw new PacienteInvalidoException("A idade do paciente não pode ser negativa.");
+        // NOVO: Validar data de nascimento
+        if (paciente.getDataNacimento() == null || paciente.getDataNacimento().trim().isEmpty()) {
+            throw new PacienteInvalidoException("A data de nascimento é obrigatória.");
+        }
+        if (!validadorData.validarDataNascimento(paciente.getDataNacimento())) {
+            throw new PacienteInvalidoException("Data de nascimento inválida. Use o formato dd/MM/yyyy e certifique-se de que é uma data no passado.");
         }
 
         pacienteRepository.salvar(paciente);
