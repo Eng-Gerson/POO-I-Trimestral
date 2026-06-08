@@ -1,0 +1,784 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram id="Ejf_ZNbwywD--JRlAMSm" name="Página-1">
+    <mxGraphModel dx="2458" dy="1487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3508" pageHeight="2480" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lbl_model" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=1;fontColor=#1a237e;" value="«package» model" vertex="1">
+          <mxGeometry height="30" width="180" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_repo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#1b5e20;" value="«package» repository" vertex="1">
+          <mxGeometry height="30" width="220" x="1280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_service" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#b71c1c;" value="«package» service" vertex="1">
+          <mxGeometry height="30" width="180" x="1900" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_menu" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#4a148c;" value="«package» menu" vertex="1">
+          <mxGeometry height="30" width="180" x="2560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_exception" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#e65100;" value="«package» exception" vertex="1">
+          <mxGeometry height="30" width="220" x="40" y="1680" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_validation" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#006064;" value="«package» validation" vertex="1">
+          <mxGeometry height="30" width="220" x="1260" y="1780" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_io" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#37474f;" value="«package» io" vertex="1">
+          <mxGeometry height="30" width="180" x="2560" y="1680" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_app" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=14;fontStyle=1;fontColor=#37474f;" value="«package» app" vertex="1">
+          <mxGeometry height="30" width="180" x="2560" y="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="Pessoa" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="«abstract»&#xa;Pessoa" vertex="1">
+          <mxGeometry height="190" width="320" x="500" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Pessoa_attrs" parent="Pessoa" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="# nome : String&#xa;# genero : char&#xa;# contacto : List&lt;String&gt;" vertex="1">
+          <mxGeometry height="70" width="320" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Pessoa_sep1" parent="Pessoa" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="320" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Pessoa_methods" parent="Pessoa" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Pessoa(nome, genero, contacto)&#xa;+ getNome() : String&#xa;+ getGenero() : char&#xa;+ getContacto() : List&lt;String&gt;&#xa;+ setNome(String) : void&#xa;+ setGenero(char) : void&#xa;+ setContacto(List&lt;String&gt;) : void" vertex="1">
+          <mxGeometry height="70" width="320" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Paciente" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Paciente" vertex="1">
+          <mxGeometry height="530" width="380" x="40" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="Paciente_attrs" parent="Paciente" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- idPaciente : int&#xa;- altura : int&#xa;- peso : float&#xa;- dataNacimento : String&#xa;- endereco : String&#xa;- contactoEmergencia : List&lt;String&gt;&#xa;- consultas : List&lt;Consulta&gt;&#xa;- exames : List&lt;Exame&gt;&#xa;- tratamentos : List&lt;Tratamento&gt;&#xa;- internamentos : List&lt;Internamento&gt;" vertex="1">
+          <mxGeometry height="150" width="380" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Paciente_sep" parent="Paciente" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="380" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Paciente_methods" parent="Paciente" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Paciente(id, altura, peso, nome, dataNacimento, genero,&#xa;  endereco, contacto, contactoEmergencia, consultas,&#xa;  exames, tratamentos, internamentos)&#xa;+ getIdPaciente() : int&#xa;+ setIdPaciente(int) : void&#xa;+ getIdade() : int&#xa;+ getDataNacimento() : String&#xa;+ setDataNacimento(String) : void&#xa;+ getEndereco() : String&#xa;+ setEndereco(String) : void&#xa;+ getContactoEmergencia() : List&lt;String&gt;&#xa;+ setContactoEmergencia(List&lt;String&gt;) : void&#xa;+ getAltura() : int  / setAltura(int)&#xa;+ getPeso() : float  / setPeso(float)&#xa;+ getConsultas() / setConsultas()&#xa;+ getExames() / setExames()&#xa;+ getTratamentos() / setTratamentos()&#xa;+ getInternamentos() / setInternamentos()&#xa;+ listarConsultas() : List&lt;Consulta&gt;&#xa;+ calcularIMC() : float&#xa;+ verificarIMC() : void" vertex="1">
+          <mxGeometry height="340" width="380" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="Profissional" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Profissional" vertex="1">
+          <mxGeometry height="310" width="360" x="820" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="Profissional_attrs" parent="Profissional" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="# idProfissional : int&#xa;# departamento : Departamento&#xa;# pacientes : List&lt;Paciente&gt;&#xa;# numeroCedulaProfissional : String" vertex="1">
+          <mxGeometry height="70" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Profissional_sep" parent="Profissional" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Profissional_methods" parent="Profissional" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Profissional(id, departamento, contacto, genero,&#xa;  nome, pacientes, numeroCedulaProfissional)&#xa;+ getIdProfissional() : int&#xa;+ getDepartamento() : Departamento&#xa;+ setDepartamento(Departamento) : void&#xa;+ getPacientes() : List&lt;Paciente&gt;&#xa;+ setPacientes(List&lt;Paciente&gt;) : void&#xa;+ getNumeroCedulaProfissional() : String" vertex="1">
+          <mxGeometry height="200" width="360" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Consulta" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Consulta" vertex="1">
+          <mxGeometry height="340" width="310" x="490" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="Consulta_attrs" parent="Consulta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- idConsulta : int&#xa;- data : String&#xa;- horas : String&#xa;- tipo : String&#xa;- obrservasoesClinicas : String&#xa;- paciente : Paciente&#xa;- profissional : Profissional&#xa;- diagnostico : String" vertex="1">
+          <mxGeometry height="130" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Consulta_sep" parent="Consulta" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Consulta_methods" parent="Consulta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Consulta(idConsulta, data, horas, tipo,&#xa;  obrservasoesClinicas, paciente, profissional,&#xa;  diagnostico)&#xa;+ getIdConsulta() : int&#xa;+ getData() / setData()&#xa;+ getHoras() / setHoras()&#xa;+ getTipo() / setTipo()&#xa;+ getObrservasoesClinicas() / set...()&#xa;+ getPaciente() / setPaciente()&#xa;+ getProfissional() / setProfissional()&#xa;+ getDiagnostico() / setDiagnostico()" vertex="1">
+          <mxGeometry height="170" width="310" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Exame" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Exame" vertex="1">
+          <mxGeometry height="320" width="320" x="15" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="Exame_attrs" parent="Exame" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- tipo : String&#xa;- idExame : int&#xa;- data : String&#xa;- resultado : String&#xa;- observacoes : String&#xa;- paciente : Paciente&#xa;- consulta : Consulta" vertex="1">
+          <mxGeometry height="120" width="320" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Exame_sep" parent="Exame" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="320" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="Exame_methods" parent="Exame" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Exame(tipo, idExame, data, resultado,&#xa;  observacoes, paciente, consulta)&#xa;+ getIdExame() : int&#xa;+ getTipo() / setTipo()&#xa;+ getData() / setData()&#xa;+ getResultado() / setResultado()&#xa;+ getObservacoes() / setObservacoes()&#xa;+ getPaciente() / setPaciente()&#xa;+ getConsulta() / setConsulta()" vertex="1">
+          <mxGeometry height="160" width="320" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Internamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Internamento" vertex="1">
+          <mxGeometry height="340" width="360" x="390" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="Internamento_attrs" parent="Internamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- idInternamento : int&#xa;- dataEntrada : String&#xa;- dataSaida : String&#xa;- quarto : int&#xa;- motivo : String&#xa;- profissionaisEnvolvidos : List&lt;Profissional&gt;&#xa;- departamento : Departamento&#xa;- paciente : Paciente" vertex="1">
+          <mxGeometry height="130" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Internamento_sep" parent="Internamento" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Internamento_methods" parent="Internamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Internamento(id, quarto, dataEntrada, dataSaida,&#xa;  motivo, departamento, paciente)&#xa;+ getIdInternamento() : int&#xa;+ getQuarto() / setQuarto()&#xa;+ getDataEntrada() / setDataEntrada()&#xa;+ getDataSaida() / setDataSaida()&#xa;+ getMotivo() / setMotivo()&#xa;+ getProfissionaisEnvolvidos() / set...()&#xa;+ getDepartamento() / setDepartamento()&#xa;+ getPaciente() / setPaciente()" vertex="1">
+          <mxGeometry height="170" width="360" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Tratamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Tratamento" vertex="1">
+          <mxGeometry height="380" width="360" x="780" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="Tratamento_attrs" parent="Tratamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- idTratamento : int&#xa;- tipo : String&#xa;- descricao : String&#xa;- dataInicio : String&#xa;- dataFim : String&#xa;- paciente : Paciente&#xa;- profissionais : List&lt;Profissional&gt;&#xa;- concluido : boolean" vertex="1">
+          <mxGeometry height="130" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Tratamento_sep" parent="Tratamento" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Tratamento_methods" parent="Tratamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Tratamento(id, tipo, descricao, dataInicio,&#xa;  dataFim, paciente, profissionais)&#xa;+ getIdTratamento() / setIdTratamento()&#xa;+ getTipo() / setTipo()&#xa;+ getDescricao() / setDescricao()&#xa;+ getDataInicio() / setDataInicio()&#xa;+ getDataFim() / setDataFim()&#xa;+ getPaciente() / setPaciente()&#xa;+ getProfissionais() / setProfissionais()&#xa;+ isConcluido() / setConcluido()&#xa;+ concluir() : void&#xa;+ getStatus() : String" vertex="1">
+          <mxGeometry height="210" width="360" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Departamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#1a237e;fontColor=#1a237e;fontSize=12;" value="Departamento" vertex="1">
+          <mxGeometry height="190" width="360" x="820" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="Departamento_attrs" parent="Departamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- nomeDepartamento : String&#xa;- idDepartamento : int&#xa;- profissionaisDoDepartamento : List&lt;Profissional&gt;" vertex="1">
+          <mxGeometry height="60" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Departamento_sep" parent="Departamento" style="line;strokeColor=#1a237e;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Departamento_methods" parent="Departamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ Departamento(nomeDepartamento, idDepartamento)&#xa;+ getNomeDepartamento() / setNomeDepartamento()&#xa;+ getIdDepartamento() : int&#xa;+ getProfissionaisDoDepartamento() / set...()&#xa;+ toString() : String" vertex="1">
+          <mxGeometry height="90" width="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="PacienteRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteRepo_attrs" parent="PacienteRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- FILE_NAME : String = &quot;pacientes.dat&quot;&#xa;- listaPacientes : List&lt;Paciente&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteRepo_sep" parent="PacienteRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteRepo_methods" parent="PacienteRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ PacienteRepository()&#xa;+ salvar(Paciente) : void&#xa;+ buscarTodos() : List&lt;Paciente&gt;&#xa;+ buscarPorId(int) : Paciente&#xa;+ atualizar(Paciente) : void&#xa;+ deletar(int) : void&#xa;- gravarDados() : void&#xa;- carregarDados() : List&lt;Paciente&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="ProfissionalRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalRepo_attrs" parent="ProfissionalRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- FILE_NAME : String = &quot;profissionais.dat&quot;&#xa;- listaProfissionais : List&lt;Profissional&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalRepo_sep" parent="ProfissionalRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalRepo_methods" parent="ProfissionalRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ProfissionalRepository()&#xa;+ salvar(Profissional) : void&#xa;+ buscarTodos() : List&lt;Profissional&gt;&#xa;+ buscarPorId(int) : Profissional&#xa;+ atualizar(Profissional) : void&#xa;+ deletar(int) : void&#xa;- gravarDados() : void&#xa;- carregarDados() : List&lt;Profissional&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="ConsultaRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaRepo_attrs" parent="ConsultaRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- CAMINHO_FICHEIRO : String = &quot;consultas.dat&quot;&#xa;- listaConsultas : List&lt;Consulta&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaRepo_sep" parent="ConsultaRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaRepo_methods" parent="ConsultaRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ConsultaRepository()&#xa;+ salvar(Consulta) : void&#xa;+ buscarTodos() : List&lt;Consulta&gt;&#xa;+ buscarPorId(int) : Consulta&#xa;+ atualizar(Consulta) : void&#xa;+ deletar(int) : void&#xa;- gravarNoFicheiro() : void&#xa;- carregarDoFicheiro() : List&lt;Consulta&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="ExameRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameRepo_attrs" parent="ExameRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- CAMINHO_FICHEIRO : String = &quot;exames.dat&quot;&#xa;- listaExames : List&lt;Exame&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameRepo_sep" parent="ExameRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameRepo_methods" parent="ExameRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ExameRepository()&#xa;+ salvar(Exame) : void&#xa;+ buscarTodos() : List&lt;Exame&gt;&#xa;+ buscarPorId(int) : Exame&#xa;+ atualizar(Exame) : void&#xa;+ deletar(int) : void&#xa;- gravarNoFicheiro() : void&#xa;- carregarDoFicheiro() : List&lt;Exame&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="InternamentoRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoRepo_attrs" parent="InternamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- CAMINHO_FICHEIRO : String = &quot;internamentos.dat&quot;&#xa;- listaInternamentos : List&lt;Internamento&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoRepo_sep" parent="InternamentoRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoRepo_methods" parent="InternamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ InternamentoRepository()&#xa;+ salvar(Internamento) : void&#xa;+ buscarTodos() : List&lt;Internamento&gt;&#xa;+ buscarPorId(int) : Internamento&#xa;+ atualizar(Internamento) : void&#xa;+ deletar(int) : void&#xa;- gravarNoFicheiro() : void&#xa;- carregarDoFicheiro() : List&lt;Internamento&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="TratamentoRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="1320" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoRepo_attrs" parent="TratamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- CAMINHO_FICHEIRO : String = &quot;tratamentos.dat&quot;&#xa;- listaTratamentos : List&lt;Tratamento&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoRepo_sep" parent="TratamentoRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoRepo_methods" parent="TratamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ TratamentoRepository()&#xa;+ salvar(Tratamento) : void&#xa;+ buscarTodos() : List&lt;Tratamento&gt;&#xa;+ buscarPorId(int) : Tratamento&#xa;+ atualizar(Tratamento) : void&#xa;+ deletar(int) : void&#xa;- gravarNoFicheiro() : void&#xa;- carregarDoFicheiro() : List&lt;Tratamento&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoRepo" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#1b5e20;fontColor=#1b5e20;fontSize=12;" value="DepartamentoRepository" vertex="1">
+          <mxGeometry height="220" width="300" x="1280" y="1550" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoRepo_attrs" parent="DepartamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- FILE_NAME : String = &quot;departamentos.dat&quot;&#xa;- listaDepartamentos : List&lt;Departamento&gt;" vertex="1">
+          <mxGeometry height="40" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoRepo_sep" parent="DepartamentoRepo" style="line;strokeColor=#1b5e20;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoRepo_methods" parent="DepartamentoRepo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ DepartamentoRepository()&#xa;+ salvar(Departamento) : void&#xa;+ buscarTodos() : List&lt;Departamento&gt;&#xa;+ buscarPorId(int) : Departamento&#xa;+ atualizar(Departamento) : void&#xa;+ deletar(int) : void&#xa;- gravarDados() : void&#xa;- carregarDados() : List&lt;Departamento&gt;" vertex="1">
+          <mxGeometry height="140" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="PacienteService" vertex="1">
+          <mxGeometry height="230" width="310" x="1900" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteService_attrs" parent="PacienteService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- pacienteRepository : PacienteRepository&#xa;- validadorData : ValidadorData" vertex="1">
+          <mxGeometry height="40" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteService_sep" parent="PacienteService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteService_methods" parent="PacienteService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ PacienteService()&#xa;+ cadastrarPaciente(Paciente) : void&#xa;+ listarPacientes() : List&lt;Paciente&gt;&#xa;+ buscarPacientePorId(int) : Paciente&#xa;+ removerPaciente(int) : void" vertex="1">
+          <mxGeometry height="150" width="310" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="ProfissionalService" vertex="1">
+          <mxGeometry height="210" width="310" x="1900" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalService_attrs" parent="ProfissionalService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- profissionalRepository : ProfissionalRepository" vertex="1">
+          <mxGeometry height="30" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalService_sep" parent="ProfissionalService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalService_methods" parent="ProfissionalService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ProfissionalService()&#xa;+ cadastrarProfissional(Profissional) : void&#xa;+ listarProfissionais() : List&lt;Profissional&gt;&#xa;+ buscarProfissionalPorId(int) : Profissional&#xa;+ removerProfissional(int) : void" vertex="1">
+          <mxGeometry height="140" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="ConsultaService" vertex="1">
+          <mxGeometry height="210" width="310" x="1900" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaService_attrs" parent="ConsultaService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- consultaRepository : ConsultaRepository" vertex="1">
+          <mxGeometry height="30" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaService_sep" parent="ConsultaService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaService_methods" parent="ConsultaService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ConsultaService()&#xa;+ agendarConsulta(Consulta) : void&#xa;+ listarConsultas() : List&lt;Consulta&gt;&#xa;+ buscarConsultaPorId(int) : Consulta&#xa;+ cancelarConsulta(int) : void" vertex="1">
+          <mxGeometry height="140" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="ExameService" vertex="1">
+          <mxGeometry height="220" width="310" x="1900" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameService_attrs" parent="ExameService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- exameRepository : ExameRepository&#xa;- consultaService : ConsultaService" vertex="1">
+          <mxGeometry height="40" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameService_sep" parent="ExameService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameService_methods" parent="ExameService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ExameService(ConsultaService)&#xa;+ solicitarExame(Exame) : void&#xa;+ listarExames() : List&lt;Exame&gt;&#xa;+ buscarExamePorId(int) : Exame&#xa;+ removerExame(int) : void" vertex="1">
+          <mxGeometry height="140" width="310" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="InternamentoService" vertex="1">
+          <mxGeometry height="220" width="310" x="1900" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoService_attrs" parent="InternamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- internamentoRepository : InternamentoRepository" vertex="1">
+          <mxGeometry height="30" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoService_sep" parent="InternamentoService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoService_methods" parent="InternamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ InternamentoService()&#xa;+ registrarInternamento(Internamento) : void&#xa;+ listarHistorico() : List&lt;Internamento&gt;&#xa;+ buscarPorId(int) : Internamento&#xa;+ registrarAlta(int, String) : void" vertex="1">
+          <mxGeometry height="150" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="TratamentoService" vertex="1">
+          <mxGeometry height="230" width="310" x="1900" y="1310" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoService_attrs" parent="TratamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- tratamentoRepository : TratamentoRepository&#xa;- validadorData : ValidadorData" vertex="1">
+          <mxGeometry height="40" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoService_sep" parent="TratamentoService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoService_methods" parent="TratamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ TratamentoService()&#xa;+ iniciarTratamento(Tratamento) : void&#xa;+ buscarPorId(int) : Tratamento&#xa;+ listarHistoricoTratamentos() : List&lt;Tratamento&gt;&#xa;+ encerraTratamento(int, String) : void&#xa;+ concluirTratamento(int) : void" vertex="1">
+          <mxGeometry height="150" width="310" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoService" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f8cecc;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=12;" value="DepartamentoService" vertex="1">
+          <mxGeometry height="220" width="310" x="1900" y="1570" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoService_attrs" parent="DepartamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- departamentoRepository : DepartamentoRepository" vertex="1">
+          <mxGeometry height="30" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoService_sep" parent="DepartamentoService" style="line;strokeColor=#b71c1c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoService_methods" parent="DepartamentoService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ DepartamentoService()&#xa;+ cadastrarDepartamento(Departamento) : void&#xa;+ listarDepartamentos() : List&lt;Departamento&gt;&#xa;+ buscarDepartamentoPorId(int) : Departamento&#xa;+ removerDepartamento(int) : void" vertex="1">
+          <mxGeometry height="150" width="310" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPrincipal" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuPrincipal" vertex="1">
+          <mxGeometry height="130" width="280" x="2560" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPrincipal_sep" parent="MenuPrincipal" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPrincipal_methods" parent="MenuPrincipal" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}" vertex="1">
+          <mxGeometry height="90" width="280" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPaciente" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuPaciente" vertex="1">
+          <mxGeometry height="160" width="280" x="2560" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPaciente_attrs" parent="MenuPaciente" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : PacienteService {static}" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPaciente_sep" parent="MenuPaciente" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuPaciente_methods" parent="MenuPaciente" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- cadastrar() : void {static}&#xa;- listarResumo() : void {static}&#xa;- verDadosCompletos() : void {static}&#xa;- remover() : void {static}" vertex="1">
+          <mxGeometry height="90" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuProfissional" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuProfissional" vertex="1">
+          <mxGeometry height="180" width="280" x="2560" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuProfissional_attrs" parent="MenuProfissional" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : ProfissionalService {static}&#xa;- departamentoService : DepartamentoService {static}" vertex="1">
+          <mxGeometry height="40" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuProfissional_sep" parent="MenuProfissional" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuProfissional_methods" parent="MenuProfissional" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- cadastrar() / listarResumo()&#xa;- verDadosCompletos() / verDadosParciais()&#xa;- remover() : void {static}" vertex="1">
+          <mxGeometry height="100" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuConsulta" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuConsulta" vertex="1">
+          <mxGeometry height="180" width="280" x="2560" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuConsulta_attrs" parent="MenuConsulta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : ConsultaService {static}&#xa;- pacienteService : PacienteService {static}&#xa;- profService : ProfissionalService {static}" vertex="1">
+          <mxGeometry height="50" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuConsulta_sep" parent="MenuConsulta" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuConsulta_methods" parent="MenuConsulta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- marcarConsulta() / listarTodas()&#xa;- buscarConsulta() / cancelarConsulta()" vertex="1">
+          <mxGeometry height="90" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuExame" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuExame" vertex="1">
+          <mxGeometry height="200" width="280" x="2560" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuExame_attrs" parent="MenuExame" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- consultaService : ConsultaService {static}&#xa;- exameService : ExameService {static}&#xa;- pacienteService : PacienteService {static}" vertex="1">
+          <mxGeometry height="50" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuExame_sep" parent="MenuExame" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuExame_methods" parent="MenuExame" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- cadastrarExame() / buscarExame()&#xa;- listarExamesPorPaciente()&#xa;- listarConsultasPorPaciente()&#xa;- listarConsultasPorProfissional()&#xa;- listarConsultasPorData()" vertex="1">
+          <mxGeometry height="110" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuInternamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuInternamento" vertex="1">
+          <mxGeometry height="180" width="280" x="2560" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuInternamento_attrs" parent="MenuInternamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : InternamentoService {static}&#xa;- pacienteService : PacienteService {static}" vertex="1">
+          <mxGeometry height="40" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuInternamento_sep" parent="MenuInternamento" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuInternamento_methods" parent="MenuInternamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- registarInternamento() / listarTodos()&#xa;- buscarInternamento() / listarPorPaciente()&#xa;- registarAlta()" vertex="1">
+          <mxGeometry height="100" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuTratamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuTratamento" vertex="1">
+          <mxGeometry height="200" width="280" x="2560" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuTratamento_attrs" parent="MenuTratamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : TratamentoService {static}&#xa;- pacienteService : PacienteService {static}&#xa;- profService : ProfissionalService {static}" vertex="1">
+          <mxGeometry height="50" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuTratamento_sep" parent="MenuTratamento" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuTratamento_methods" parent="MenuTratamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- iniciarTratamento() / listarTodos()&#xa;- buscarTratamento() / listarPorPaciente()&#xa;- encerrarTratamento() / concluirTratamento()" vertex="1">
+          <mxGeometry height="110" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuDepartamento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#4a148c;fontColor=#4a148c;fontSize=12;" value="MenuDepartamento" vertex="1">
+          <mxGeometry height="170" width="280" x="2560" y="1510" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuDepartamento_attrs" parent="MenuDepartamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="- service : DepartamentoService {static}" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuDepartamento_sep" parent="MenuDepartamento" style="line;strokeColor=#4a148c;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuDepartamento_methods" parent="MenuDepartamento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ exibir() : void {static}&#xa;- cadastrar() / listarTodos()&#xa;- verDados() / remover()" vertex="1">
+          <mxGeometry height="100" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EntidadeNaoEncontradaEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="EntidadeNaoEncontradaException" vertex="1">
+          <mxGeometry height="80" width="270" x="40" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="EntidadeNaoEncontradaEx_m" parent="EntidadeNaoEncontradaEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ EntidadeNaoEncontradaException(String)" vertex="1">
+          <mxGeometry height="48" width="270" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="PacienteInvalidoException" vertex="1">
+          <mxGeometry height="80" width="240" x="330" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="PacienteInvalidoEx_m" parent="PacienteInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ PacienteInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="240" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="ProfissionalInvalidoException" vertex="1">
+          <mxGeometry height="80" width="260" x="590" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="ProfissionalInvalidoEx_m" parent="ProfissionalInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ProfissionalInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="260" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaInvalidaEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="ConsultaInvalidaException" vertex="1">
+          <mxGeometry height="80" width="240" x="40" y="1830" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsultaInvalidaEx_m" parent="ConsultaInvalidaEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ConsultaInvalidaException(String)" vertex="1">
+          <mxGeometry height="48" width="240" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="ExameInvalidoException" vertex="1">
+          <mxGeometry height="80" width="230" x="300" y="1830" as="geometry" />
+        </mxCell>
+        <mxCell id="ExameInvalidoEx_m" parent="ExameInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ ExameInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="230" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="InternamentoInvalidoException" vertex="1">
+          <mxGeometry height="80" width="260" x="550" y="1830" as="geometry" />
+        </mxCell>
+        <mxCell id="InternamentoInvalidoEx_m" parent="InternamentoInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ InternamentoInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="260" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="TratamentoInvalidoException" vertex="1">
+          <mxGeometry height="80" width="250" x="40" y="1940" as="geometry" />
+        </mxCell>
+        <mxCell id="TratamentoInvalidoEx_m" parent="TratamentoInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ TratamentoInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="250" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoInvalidoEx" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#ffe6cc;strokeColor=#e65100;fontColor=#e65100;fontSize=11;" value="DepartamentoInvalidoException" vertex="1">
+          <mxGeometry height="80" width="260" x="310" y="1940" as="geometry" />
+        </mxCell>
+        <mxCell id="DepartamentoInvalidoEx_m" parent="DepartamentoInvalidoEx" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ DepartamentoInvalidoException(String)" vertex="1">
+          <mxGeometry height="48" width="260" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="Validador" parent="1" style="swimlane;fontStyle=3;align=center;startSize=40;fillColor=#e0f7fa;strokeColor=#006064;fontColor=#006064;fontSize=12;" value="«interface»&#xa;Validador" vertex="1">
+          <mxGeometry height="100" width="240" x="1420" y="1800" as="geometry" />
+        </mxCell>
+        <mxCell id="Validador_sep" parent="Validador" style="line;strokeColor=#006064;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="240" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Validador_methods" parent="Validador" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ validar(String) : boolean" vertex="1">
+          <mxGeometry height="50" width="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorData" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e0f7fa;strokeColor=#006064;fontColor=#006064;fontSize=12;" value="ValidadorData" vertex="1">
+          <mxGeometry height="200" width="280" x="1100" y="1860" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorData_attrs" parent="ValidadorData" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="- FORMATO_DATA : String = &quot;dd/MM/yyyy&quot; {static final}&#xa;- formatter : DateTimeFormatter {static final}" vertex="1">
+          <mxGeometry height="40" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorData_sep" parent="ValidadorData" style="line;strokeColor=#006064;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorData_methods" parent="ValidadorData" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ validar(String) : boolean&#xa;+ validarDataNascimento(String) : boolean&#xa;+ validarIntervaloData(String, String) : boolean&#xa;+ calcularIdade(String) : int&#xa;+ getFormatoData() : String {static}" vertex="1">
+          <mxGeometry height="120" width="280" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorNome" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e0f7fa;strokeColor=#006064;fontColor=#006064;fontSize=12;" value="ValidadorNome" vertex="1">
+          <mxGeometry height="100" width="230" x="1670" y="1930" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorNome_sep" parent="ValidadorNome" style="line;strokeColor=#006064;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorNome_methods" parent="ValidadorNome" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ validar(String) : boolean" vertex="1">
+          <mxGeometry height="60" width="230" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorDocumento" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e0f7fa;strokeColor=#006064;fontColor=#006064;fontSize=12;" value="ValidadorDocumento" vertex="1">
+          <mxGeometry height="100" width="230" x="1280" y="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorDocumento_sep" parent="ValidadorDocumento" style="line;strokeColor=#006064;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorDocumento_methods" parent="ValidadorDocumento" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ validar(String) : boolean" vertex="1">
+          <mxGeometry height="60" width="230" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorTelefone" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e0f7fa;strokeColor=#006064;fontColor=#006064;fontSize=12;" value="ValidadorTelefone" vertex="1">
+          <mxGeometry height="100" width="230" x="1530" y="2080" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorTelefone_sep" parent="ValidadorTelefone" style="line;strokeColor=#006064;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ValidadorTelefone_methods" parent="ValidadorTelefone" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ validar(String) : boolean" vertex="1">
+          <mxGeometry height="60" width="230" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsoleInput" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f5f5f5;strokeColor=#37474f;fontColor=#37474f;fontSize=12;" value="ConsoleInput" vertex="1">
+          <mxGeometry height="140" width="280" x="2560" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsoleInput_attrs" parent="ConsoleInput" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="- reader : BufferedReader {static final}" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsoleInput_sep" parent="ConsoleInput" style="line;strokeColor=#37474f;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ConsoleInput_methods" parent="ConsoleInput" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ lerString(String) : String {static}&#xa;+ lerInteiro(String) : int {static}&#xa;+ lerDecimal(String) : double {static}" vertex="1">
+          <mxGeometry height="70" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Main" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f5f5f5;strokeColor=#37474f;fontColor=#37474f;fontSize=12;" value="Main" vertex="1">
+          <mxGeometry height="90" width="280" x="2560" y="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="Main_sep" parent="Main" style="line;strokeColor=#37474f;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Main_methods" parent="Main" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;rotatable=0;fontSize=11;" value="+ main(String[]) : void {static}" vertex="1">
+          <mxGeometry height="50" width="280" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_paciente_pessoa" edge="1" parent="1" source="Paciente" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#1a237e;exitX=0.5;exitY=0;exitObject=Paciente;entryX=0.5;entryY=1;entryObject=Pessoa;" target="Pessoa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_paciente_pessoa_lbl" connectable="0" parent="e_paciente_pessoa" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="extends" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_profissional_pessoa" edge="1" parent="1" source="Profissional" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#1a237e;exitX=0;exitY=0.5;exitObject=Profissional;entryX=1;entryY=0.5;entryObject=Pessoa;" target="Pessoa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_profissional_pessoa_lbl" connectable="0" parent="e_profissional_pessoa" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="extends" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_consulta_paciente" edge="1" parent="1" source="Consulta" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Paciente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_consulta_paciente_lbl" connectable="0" parent="e_consulta_paciente" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="paciente&#xa;1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_consulta_profissional" edge="1" parent="1" source="Consulta" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Profissional">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_consulta_profissional_lbl" connectable="0" parent="e_consulta_profissional" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="profissional&#xa;1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exame_paciente" edge="1" parent="1" source="Exame" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Paciente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exame_paciente_lbl" connectable="0" parent="e_exame_paciente" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="paciente 1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exame_consulta" edge="1" parent="1" source="Exame" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Consulta">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="175" y="1010" />
+              <mxPoint x="645" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_exame_consulta_lbl" connectable="0" parent="e_exame_consulta" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="consulta 1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tratamento_paciente" edge="1" parent="1" source="Tratamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Paciente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tratamento_paciente_lbl" connectable="0" parent="e_tratamento_paciente" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="paciente 1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tratamento_profissional" edge="1" parent="1" source="Tratamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Profissional">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="555" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tratamento_profissional_lbl" connectable="0" parent="e_tratamento_profissional" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="profissionais 1..*" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_internamento_paciente" edge="1" parent="1" source="Internamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Paciente">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="1110" />
+              <mxPoint x="230" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_internamento_paciente_lbl" connectable="0" parent="e_internamento_paciente" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="paciente 1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_internamento_dept" edge="1" parent="1" source="Internamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Departamento">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="885" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_internamento_dept_lbl" connectable="0" parent="e_internamento_dept" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="departamento 0..1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_internamento_prof" edge="1" parent="1" source="Internamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Profissional">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="1400" />
+              <mxPoint x="1200" y="555" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_internamento_prof_lbl" connectable="0" parent="e_internamento_prof" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="profissionaisEnvolvidos 0..*" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prof_dept" edge="1" parent="1" source="Profissional" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="Departamento">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="750" />
+              <mxPoint x="950" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_prof_dept_lbl" connectable="0" parent="e_prof_dept" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="departamento 1" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pacServ_pacRepo" edge="1" parent="1" source="PacienteService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="PacienteRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_profServ_profRepo" edge="1" parent="1" source="ProfissionalService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ProfissionalRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_consServ_consRepo" edge="1" parent="1" source="ConsultaService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ConsultaRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exServ_exRepo" edge="1" parent="1" source="ExameService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ExameRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exServ_consServ" edge="1" parent="1" source="ExameService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ConsultaService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_exServ_consServ_lbl" connectable="0" parent="e_exServ_consServ" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="usa" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_intServ_intRepo" edge="1" parent="1" source="InternamentoService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="InternamentoRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tratServ_tratRepo" edge="1" parent="1" source="TratamentoService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="TratamentoRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_deptServ_deptRepo" edge="1" parent="1" source="DepartamentoService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="DepartamentoRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pacServ_valData" edge="1" parent="1" source="PacienteService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ValidadorData">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2055" y="60" />
+              <mxPoint x="1260" y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tratServ_valData" edge="1" parent="1" source="TratamentoService" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#b71c1c;dashed=1;" target="ValidadorData">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1240" y="1310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_paciente_valData" edge="1" parent="1" source="Paciente" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#1a237e;dashed=1;" target="ValidadorData">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_paciente_valData_lbl" connectable="0" parent="e_paciente_valData" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="usa (getIdade)" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valData_validador" edge="1" parent="1" source="ValidadorData" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#006064;dashed=1;" target="Validador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valData_validador_lbl" connectable="0" parent="e_valData_validador" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="implements" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valNome_validador" edge="1" parent="1" source="ValidadorNome" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#006064;dashed=1;" target="Validador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valNome_validador_lbl" connectable="0" parent="e_valNome_validador" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="implements" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valDoc_validador" edge="1" parent="1" source="ValidadorDocumento" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#006064;dashed=1;" target="Validador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valDoc_validador_lbl" connectable="0" parent="e_valDoc_validador" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="implements" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valTel_validador" edge="1" parent="1" source="ValidadorTelefone" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#006064;dashed=1;" target="Validador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_valTel_validador_lbl" connectable="0" parent="e_valTel_validador" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="implements" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_entidadeEx_rt" edge="1" parent="1" source="EntidadeNaoEncontradaEx" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#e65100;" target="PacienteInvalidoEx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuPac_pacServ" edge="1" parent="1" source="MenuPaciente" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="PacienteService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuProf_profServ" edge="1" parent="1" source="MenuProfissional" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="ProfissionalService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuProf_deptServ" edge="1" parent="1" source="MenuProfissional" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="DepartamentoService">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2290" y="510" />
+              <mxPoint x="2290" y="1660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuCons_consServ" edge="1" parent="1" source="MenuConsulta" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="ConsultaService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuExame_exServ" edge="1" parent="1" source="MenuExame" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="ExameService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuInt_intServ" edge="1" parent="1" source="MenuInternamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="InternamentoService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuTrat_tratServ" edge="1" parent="1" source="MenuTratamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="TratamentoService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuDept_deptServ" edge="1" parent="1" source="MenuDepartamento" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="DepartamentoService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuPac" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuPaciente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuProf" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuProfissional">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2490" y="135" />
+              <mxPoint x="2490" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuCons" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuConsulta">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2540" y="135" />
+              <mxPoint x="2540" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuExame" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuExame">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2510" y="135" />
+              <mxPoint x="2510" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuInt" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuInternamento">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2950" y="135" />
+              <mxPoint x="2950" y="1160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuTrat" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuTratamento">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2930" y="135" />
+              <mxPoint x="2930" y="1380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_menuPrinc_menuDept" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;" target="MenuDepartamento">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2890" y="135" />
+              <mxPoint x="2890" y="1595" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_main_menuPrinc" edge="1" parent="1" source="Main" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#37474f;" target="MenuPrincipal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2910" y="1945" />
+              <mxPoint x="2910" y="134.99999999999977" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_main_menuPrinc_lbl" connectable="0" parent="e_main_menuPrinc" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="invoca" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_menus_console" edge="1" parent="1" source="MenuPrincipal" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;strokeColor=#4a148c;dashed=1;" target="ConsoleInput">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2870" y="135" />
+              <mxPoint x="2870" y="1790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
