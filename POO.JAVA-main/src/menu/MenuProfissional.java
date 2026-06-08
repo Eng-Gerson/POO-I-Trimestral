@@ -49,7 +49,6 @@ public class MenuProfissional {
             String cedula = ConsoleInput.lerString("Número da Cédula: ");
             String contacto = ConsoleInput.lerString("Contacto: ");
             
-            // NOVO: Solicitar ID do departamento
             System.out.println("\n--- DEPARTAMENTOS DISPONÍVEIS ---");
             List<Departamento> departamentos = departamentoService.listarDepartamentos();
             
