@@ -16,6 +16,7 @@ public class MenuPrincipal {
             System.out.println("4. Exames");
             System.out.println("5. Internamentos");
             System.out.println("6. Tratamentos");
+            System.out.println("7. Departamentos");
             System.out.println("------------------------------------");
             System.out.println("0. Sair do Sistema");
             
@@ -29,6 +30,7 @@ public class MenuPrincipal {
                 case 4: MenuExame.exibir(); break;
                 case 5: MenuInternamento.exibir(); break;
                 case 6: MenuTratamento.exibir(); break;
+                case 7: MenuDepartamento.exibir();break;
                 case 0: System.out.println("Encerrando o sistema..."); break;
                 default: System.out.println("Opção inválida!");
             }
