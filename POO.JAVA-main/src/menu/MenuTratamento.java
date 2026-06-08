@@ -56,7 +56,6 @@ public class MenuTratamento {
             int idPac = ConsoleInput.lerInteiro("ID do Paciente: ");
             Paciente p = pacienteService.buscarPacientePorId(idPac);
             
-            // NOVO: Gestão obrigatória da lista de profissionais
             List<Profissional> profissionaisEnvolvidos = new ArrayList<>();
             int qtd = ConsoleInput.lerInteiro("Quantos profissionais estão envolvidos? ");
             
@@ -77,7 +76,7 @@ public class MenuTratamento {
                 }
             }
 
-            // Criação e envio para o serviço
+            
             Tratamento t = new Tratamento(id, tipo, desc, inicio, fim.isEmpty() ? null : fim, p, profissionaisEnvolvidos);
             service.iniciarTratamento(t);
 
@@ -150,9 +149,7 @@ public class MenuTratamento {
         }
     }
 
-    /**
-     * NOVO: Opção para encerrar um tratamento
-     */
+     
     private static void encerrarTratamento() {
         System.out.println("\n--- ENCERRAR TRATAMENTO ---");
         int id = ConsoleInput.lerInteiro("ID do tratamento a encerrar: ");
@@ -167,9 +164,7 @@ public class MenuTratamento {
         }
     }
 
-    /**
-     * NOVO: Opção para marcar um tratamento como concluído
-     */
+          
     private static void concluirTratamento() {
         System.out.println("\n--- MARCAR TRATAMENTO COMO CONCLUÍDO ---");
         int id = ConsoleInput.lerInteiro("ID do tratamento a concluir: ");
