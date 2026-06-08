@@ -10,6 +10,5 @@ Da análise do Minimundo, foram identificadas as seguintes entidades principais:
 -	``Exame`` – solicitação de análise laboratorial ou radiológica, com tipo, resultado e observações, vinculada a um doente.
 -	``Internamento`` – período de hospitalização com indicação de cama, quarto e motivo, associado a um doente e supervisionado por enfermeiros.
 -	``Tratamento`` – intervenção clínica prescrita após diagnóstico, com tipo e observações.
--	``Medicamento`` – substância farmacológica administrada no contexto de um tratamento, com código, nome e dosagem.
 
-Quanto aos relacionamentos, o Minimundo define que um doente pode acumular várias consultas, internamentos, exames e tratamentos; que cada consulta dá origem a um diagnóstico; que os internamentos e tratamentos decorrem do diagnóstico; e que os medicamentos são administrados no contexto dos tratamentos.
+Quanto aos relacionamentos, o Minimundo define que um doente pode acumular várias consultas, internamentos, exames e tratamentos; que cada consulta dá origem a um diagnóstico;  e que os internamentos e tratamentos decorrem do diagnóstico.
