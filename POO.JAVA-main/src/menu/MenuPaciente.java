@@ -49,7 +49,6 @@ public class MenuPaciente {
             String contacto = ConsoleInput.lerString("Contacto: ");
             String contatoEmerg = ConsoleInput.lerString("Contacto de Emergência: ");
 
-            // Removida a entrada de idade - será calculada automaticamente
             Paciente p = new Paciente(
                 id, altura, peso, nome, dataNasc, genero, endereco,
                 new ArrayList<>(Arrays.asList(contacto)),
