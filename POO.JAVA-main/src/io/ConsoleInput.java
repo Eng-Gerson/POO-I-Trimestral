@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class ConsoleInput {
-    // Mantemos uma única instância do BufferedReader para toda a aplicação
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     
