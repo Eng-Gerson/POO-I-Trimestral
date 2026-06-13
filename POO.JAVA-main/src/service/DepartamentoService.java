@@ -12,24 +12,21 @@ public class DepartamentoService {
 
     public DepartamentoService() {
         this.departamentoRepository = new DepartamentoRepository();
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Departamento.sincronizarContador(departamentoRepository.buscarTodos());
     }
 
     public void cadastrarDepartamento(Departamento departamento) {
         if (departamento == null) {
             throw new IllegalArgumentException("Os dados do departamento não foram fornecidos.");
         }
-        if (departamento.getIdDepartamento() <= 0) {
-            throw new IllegalArgumentException("ID do departamento inválido. Deve ser maior que zero.");
-        }
         if (departamento.getNomeDepartamento() == null || departamento.getNomeDepartamento().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do departamento é obrigatório.");
         }
-        if (departamentoRepository.buscarPorId(departamento.getIdDepartamento()) != null) {
-            throw new IllegalArgumentException("Já existe um departamento com o ID: " + departamento.getIdDepartamento());
-        }
 
         departamentoRepository.salvar(departamento);
-        System.out.println("Sucesso: Departamento " + departamento.getNomeDepartamento() + " cadastrado com sucesso!");
+        System.out.println("Sucesso: Departamento " + departamento.getNomeDepartamento()
+                + " cadastrado com ID " + departamento.getIdDepartamento() + "!");
     }
 
     public List<Departamento> listarDepartamentos() {

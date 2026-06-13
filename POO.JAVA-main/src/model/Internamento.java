@@ -7,6 +7,8 @@ import java.util.List;
 public class Internamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private static int contador = 1;
+
     private int idInternamento;
     private String dataEntrada;
     private String dataSaida;
@@ -16,9 +18,9 @@ public class Internamento implements Serializable {
     private Departamento departamento;
     private Paciente paciente;
 
-    public Internamento(int idInternamento, int quarto, String dataEntrada, String dataSaida, String motivo,
+    public Internamento(int quarto, String dataEntrada, String dataSaida, String motivo,
             Departamento departamento, Paciente paciente) {
-        this.idInternamento = idInternamento;
+        this.idInternamento = contador++;
         this.quarto = quarto;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
@@ -26,6 +28,14 @@ public class Internamento implements Serializable {
         this.departamento = departamento;
         this.paciente = paciente;
         this.profissionaisEnvolvidos = new ArrayList<>();
+    }
+
+    // Sincroniza o contador com os dados carregados do ficheiro
+    public static void sincronizarContador(List<Internamento> lista) {
+        lista.stream()
+             .mapToInt(Internamento::getIdInternamento)
+             .max()
+             .ifPresent(max -> contador = max + 1);
     }
 
     public int getIdInternamento() { return idInternamento; }

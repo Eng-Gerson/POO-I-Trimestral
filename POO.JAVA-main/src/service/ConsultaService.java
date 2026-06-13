@@ -13,17 +13,13 @@ public class ConsultaService {
 
     public ConsultaService() {
         this.consultaRepository = new ConsultaRepository();
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Consulta.sincronizarContador(consultaRepository.buscarTodos());
     }
 
     public void agendarConsulta(Consulta consulta) {
         if (consulta == null) {
             throw new ConsultaInvalidaException("Os dados da consulta não foram fornecidos.");
-        }
-        if (consulta.getIdConsulta() <= 0) {
-            throw new ConsultaInvalidaException("ID da consulta inválido. Deve ser maior que zero.");
-        }
-        if (consultaRepository.buscarPorId(consulta.getIdConsulta()) != null) {
-            throw new ConsultaInvalidaException("Já existe uma consulta registada com o ID: " + consulta.getIdConsulta());
         }
         if (consulta.getPaciente() == null) {
             throw new ConsultaInvalidaException("Não é possível agendar uma consulta sem um paciente vinculado.");
@@ -66,6 +62,5 @@ public class ConsultaService {
         }
         consultaRepository.deletar(id);
         System.out.println("Consulta ID " + id + " cancelada com sucesso.");
-
     }
 }

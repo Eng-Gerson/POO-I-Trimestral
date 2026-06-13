@@ -39,7 +39,6 @@ public class MenuPaciente {
     private static void cadastrar() {
         System.out.println("\n--- CADASTRAR PACIENTE ---");
         try {
-            int id          = ConsoleInput.lerInteiro("ID: ");
             String nome     = ConsoleInput.lerString("Nome: ");
             int altura      = ConsoleInput.lerInteiro("Altura (cm): ");
             float peso      = (float) ConsoleInput.lerDecimal("Peso (kg): ");
@@ -50,14 +49,14 @@ public class MenuPaciente {
             String contatoEmerg = ConsoleInput.lerString("Contacto de Emergência: ");
 
             Paciente p = new Paciente(
-                id, altura, peso, nome, dataNasc, genero, endereco,
+                altura, peso, nome, dataNasc, genero, endereco,
                 new ArrayList<>(Arrays.asList(contacto)),
                 new ArrayList<>(Arrays.asList(contatoEmerg)),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
             );
 
             service.cadastrarPaciente(p);
-            System.out.println("Sucesso: Paciente cadastrado com sucesso!");
+            System.out.println("Sucesso: Paciente cadastrado com sucesso! ID atribuído: " + p.getIdPaciente());
 
         } catch (PacienteInvalidoException e) {
             System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());

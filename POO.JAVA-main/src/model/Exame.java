@@ -1,27 +1,38 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Exame implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String tipo;
+    private static int contador = 1;
+
     private int idExame;
+    private String tipo;
     private String data;
     private String resultado;
     private String observacoes;
     private Paciente paciente;
     private Consulta consulta;
 
-    public Exame(String tipo, int idExame, String data, String resultado, String observacoes,
+    public Exame(String tipo, String data, String resultado, String observacoes,
             Paciente paciente, Consulta consulta) {
+        this.idExame = contador++;
         this.tipo = tipo;
-        this.idExame = idExame;
         this.data = data;
         this.resultado = resultado;
         this.observacoes = observacoes;
         this.paciente = paciente;
         this.consulta = consulta;
+    }
+
+    // Sincroniza o contador com os dados carregados do ficheiro
+    public static void sincronizarContador(List<Exame> lista) {
+        lista.stream()
+             .mapToInt(Exame::getIdExame)
+             .max()
+             .ifPresent(max -> contador = max + 1);
     }
 
     public int getIdExame() { return idExame; }

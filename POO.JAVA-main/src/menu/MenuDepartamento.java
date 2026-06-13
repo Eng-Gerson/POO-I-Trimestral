@@ -36,11 +36,11 @@ public class MenuDepartamento {
     private static void cadastrar() {
         System.out.println("\n--- CADASTRAR DEPARTAMENTO ---");
         try {
-            int id = ConsoleInput.lerInteiro("ID do Departamento: ");
             String nome = ConsoleInput.lerString("Nome do Departamento: ");
 
-            Departamento d = new Departamento(nome, id);
+            Departamento d = new Departamento(nome);
             service.cadastrarDepartamento(d);
+            System.out.println("Sucesso: Departamento cadastrado com sucesso! ID atribuído: " + d.getIdDepartamento());
 
         } catch (IllegalArgumentException e) {
             System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());

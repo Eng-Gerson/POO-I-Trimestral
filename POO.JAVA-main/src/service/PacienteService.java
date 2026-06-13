@@ -16,17 +16,13 @@ public class PacienteService {
     public PacienteService() {
         this.pacienteRepository = new PacienteRepository();
         this.validadorData = new ValidadorData();
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Paciente.sincronizarContador(pacienteRepository.buscarTodos());
     }
 
     public void cadastrarPaciente(Paciente paciente) {
         if (paciente == null) {
             throw new PacienteInvalidoException("Os dados do paciente não foram fornecidos.");
-        }
-        if (paciente.getIdPaciente() <= 0) {
-            throw new PacienteInvalidoException("ID do paciente inválido. Deve ser maior que zero.");
-        }
-        if (pacienteRepository.buscarPorId(paciente.getIdPaciente()) != null) {
-            throw new PacienteInvalidoException("Já existe um paciente registado com o ID: " + paciente.getIdPaciente());
         }
         if (paciente.getNome() == null || paciente.getNome().trim().isEmpty()) {
             throw new PacienteInvalidoException("O nome do paciente é obrigatório.");
@@ -40,7 +36,6 @@ public class PacienteService {
         if (paciente.getAltura() <= 0) {
             throw new PacienteInvalidoException("A altura do paciente deve ser maior que zero.");
         }
-        // NOVO: Validar data de nascimento
         if (paciente.getDataNacimento() == null || paciente.getDataNacimento().trim().isEmpty()) {
             throw new PacienteInvalidoException("A data de nascimento é obrigatória.");
         }
@@ -49,7 +44,7 @@ public class PacienteService {
         }
 
         pacienteRepository.salvar(paciente);
-        System.out.println("Sucesso: Paciente " + paciente.getNome() + " cadastrado com sucesso!");
+        System.out.println("Sucesso: Paciente " + paciente.getNome() + " cadastrado com ID " + paciente.getIdPaciente() + "!");
     }
 
     public List<Paciente> listarPacientes() {

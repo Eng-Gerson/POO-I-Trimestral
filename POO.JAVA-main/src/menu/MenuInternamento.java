@@ -41,18 +41,17 @@ public class MenuInternamento {
     private static void registarInternamento() {
         System.out.println("\n--- REGISTAR NOVO INTERNAMENTO ---");
         try {
-            int id        = ConsoleInput.lerInteiro("ID do Internamento: ");
-            int quarto    = ConsoleInput.lerInteiro("Número do Quarto: ");
+            int quarto     = ConsoleInput.lerInteiro("Número do Quarto: ");
             String entrada = ConsoleInput.lerString("Data de Entrada (dd/mm/aaaa): ");
             String saida   = ConsoleInput.lerString("Data de Saída (ou 'Pendente'): ");
             String motivo  = ConsoleInput.lerString("Motivo: ");
 
-            int idPac    = ConsoleInput.lerInteiro("ID do Paciente: ");
-            Paciente p   = pacienteService.buscarPacientePorId(idPac);
+            int idPac  = ConsoleInput.lerInteiro("ID do Paciente: ");
+            Paciente p = pacienteService.buscarPacientePorId(idPac);
 
-            Internamento i = new Internamento(id, quarto, entrada, saida, motivo, null, p);
+            Internamento i = new Internamento(quarto, entrada, saida, motivo, null, p);
             service.registrarInternamento(i);
-            System.out.println("Sucesso: Internamento registado com sucesso!");
+            System.out.println("Sucesso: Internamento registado com sucesso! ID atribuído: " + i.getIdInternamento());
 
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO DE REGISTO]: " + e.getMessage());

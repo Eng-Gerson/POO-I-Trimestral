@@ -43,35 +43,34 @@ public class MenuProfissional {
     private static void cadastrar() {
         System.out.println("\n--- CADASTRAR PROFISSIONAL ---");
         try {
-            int id        = ConsoleInput.lerInteiro("ID: ");
             String nome   = ConsoleInput.lerString("Nome: ");
             char genero   = ConsoleInput.lerString("Género (M/F): ").charAt(0);
             String cedula = ConsoleInput.lerString("Número da Cédula: ");
             String contacto = ConsoleInput.lerString("Contacto: ");
-            
+
             System.out.println("\n--- DEPARTAMENTOS DISPONÍVEIS ---");
             List<Departamento> departamentos = departamentoService.listarDepartamentos();
-            
+
             if (departamentos.isEmpty()) {
                 System.out.println("Nenhum departamento registado no sistema.");
                 System.out.println("Por favor, registre um departamento antes de cadastrar um profissional.");
                 return;
             }
-            
-            departamentos.forEach(d -> 
+
+            departamentos.forEach(d ->
                 System.out.println("ID: " + d.getIdDepartamento() + " | Nome: " + d.getNomeDepartamento()));
-            
+
             int idDept = ConsoleInput.lerInteiro("\nSelecione o ID do departamento: ");
             Departamento depto = departamentoService.buscarDepartamentoPorId(idDept);
 
             Profissional p = new Profissional(
-                id, depto,
+                depto,
                 new ArrayList<>(Arrays.asList(contacto)),
                 genero, nome, new ArrayList<>(), cedula
             );
 
             service.cadastrarProfissional(p);
-            System.out.println("Sucesso: Profissional cadastrado com sucesso!");
+            System.out.println("Sucesso: Profissional cadastrado com sucesso! ID atribuído: " + p.getIdProfissional());
 
         } catch (ProfissionalInvalidoException e) {
             System.out.println("\n[ERRO DE VALIDAÇÃO]: " + e.getMessage());

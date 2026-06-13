@@ -16,14 +16,13 @@ public class ExameService {
     public ExameService(ConsultaService consultaService) {
         this.exameRepository = new ExameRepository();
         this.consultaService = consultaService;
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Exame.sincronizarContador(exameRepository.buscarTodos());
     }
 
     public void solicitarExame(Exame exame) {
         if (exame == null) {
             throw new ExameInvalidoException("Os dados do exame não foram fornecidos.");
-        }
-        if (exame.getIdExame() <=0 ) {
-            throw new ExameInvalidoException("ID do exame inválido. Não pode estar vazio.");
         }
         if (exame.getTipo() == null || exame.getTipo().trim().isEmpty()) {
             throw new ExameInvalidoException("O tipo do exame (ex: Hemograma, Raio-X) é obrigatório.");
@@ -47,7 +46,6 @@ public class ExameService {
 
         exameRepository.salvar(exame);
         System.out.println("Sucesso: Exame '" + exame.getTipo() + "' solicitado com sucesso para o(a) paciente " + exame.getPaciente().getNome());
-
     }
 
     public List<Exame> listarExames() {

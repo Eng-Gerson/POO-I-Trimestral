@@ -13,17 +13,13 @@ public class InternamentoService {
 
     public InternamentoService() {
         this.internamentoRepository = new InternamentoRepository();
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Internamento.sincronizarContador(internamentoRepository.buscarTodos());
     }
 
     public void registrarInternamento(Internamento internamento) {
         if (internamento == null) {
             throw new InternamentoInvalidoException("Os dados do internamento não foram fornecidos.");
-        }
-        if (internamento.getIdInternamento() <= 0) {
-            throw new InternamentoInvalidoException("ID de internamento inválido. Deve ser maior que zero.");
-        }
-        if (internamentoRepository.buscarPorId(internamento.getIdInternamento()) != null) {
-            throw new InternamentoInvalidoException("Já existe um internamento registado com o ID: " + internamento.getIdInternamento());
         }
         if (internamento.getPaciente() == null) {
             throw new InternamentoInvalidoException("Não é possível registar internamento sem um paciente vinculado.");
@@ -36,7 +32,8 @@ public class InternamentoService {
         }
 
         internamentoRepository.salvar(internamento);
-        System.out.println("Histórico: Internamento do paciente " + internamento.getPaciente().getNome() + " registrado com sucesso.");
+        System.out.println("Histórico: Internamento do paciente " + internamento.getPaciente().getNome()
+                + " registrado com ID " + internamento.getIdInternamento() + " com sucesso.");
     }
 
     public List<Internamento> listarHistorico() {

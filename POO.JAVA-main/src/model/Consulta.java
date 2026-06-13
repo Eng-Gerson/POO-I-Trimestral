@@ -1,9 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Consulta implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    private static int contador = 1;
 
     private int idConsulta;
     private String data;
@@ -14,9 +17,9 @@ public class Consulta implements Serializable {
     private Profissional profissional;
     private String diagnostico;
 
-    public Consulta(int idConsulta, String data, String horas, String tipo, String obrservasoesClinicas,
+    public Consulta(String data, String horas, String tipo, String obrservasoesClinicas,
             Paciente paciente, Profissional profissional, String diagnostico) {
-        this.idConsulta = idConsulta;
+        this.idConsulta = contador++;
         this.data = data;
         this.horas = horas;
         this.tipo = tipo;
@@ -24,6 +27,14 @@ public class Consulta implements Serializable {
         this.paciente = paciente;
         this.profissional = profissional;
         this.diagnostico = diagnostico;
+    }
+
+    // Sincroniza o contador com os dados carregados do ficheiro
+    public static void sincronizarContador(List<Consulta> lista) {
+        lista.stream()
+             .mapToInt(Consulta::getIdConsulta)
+             .max()
+             .ifPresent(max -> contador = max + 1);
     }
 
     public int getIdConsulta() { return idConsulta; }

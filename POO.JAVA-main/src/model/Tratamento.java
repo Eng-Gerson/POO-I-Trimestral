@@ -6,6 +6,8 @@ import java.util.List;
 public class Tratamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private static int contador = 1;
+
     private int idTratamento;
     private String tipo;
     private String descricao;
@@ -13,22 +15,29 @@ public class Tratamento implements Serializable {
     private String dataFim;
     private Paciente paciente;
     private List<Profissional> profissionais;
-    private boolean concluido;  
+    private boolean concluido;
 
-    public Tratamento(int idTratamento, String tipo, String descricao, String dataInicio, String dataFim, 
+    public Tratamento(String tipo, String descricao, String dataInicio, String dataFim,
                       Paciente paciente, List<Profissional> profissionais) {
-        this.idTratamento = idTratamento;
+        this.idTratamento = contador++;
         this.tipo = tipo;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.paciente = paciente;
         this.profissionais = profissionais;
-        this.concluido = false;  
+        this.concluido = false;
+    }
+
+    // Sincroniza o contador com os dados carregados do ficheiro
+    public static void sincronizarContador(List<Tratamento> lista) {
+        lista.stream()
+             .mapToInt(Tratamento::getIdTratamento)
+             .max()
+             .ifPresent(max -> contador = max + 1);
     }
 
     public int getIdTratamento() { return idTratamento; }
-    public void setIdTratamento(int idTratamento) { this.idTratamento = idTratamento; }
 
     public String getTipo() { return tipo; }
     public void setTipo(String tipo) { this.tipo = tipo; }
@@ -51,9 +60,7 @@ public class Tratamento implements Serializable {
     public boolean isConcluido() { return concluido; }
     public void setConcluido(boolean concluido) { this.concluido = concluido; }
 
-    public void concluir() {
-        this.concluido = true;
-    }
+    public void concluir() { this.concluido = true; }
 
     public String getStatus() {
         if (concluido) {

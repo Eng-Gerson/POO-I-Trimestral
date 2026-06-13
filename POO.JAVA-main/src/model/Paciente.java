@@ -5,10 +5,12 @@ import validation.ValidadorData;
 
 public class Paciente extends Pessoa {
 
+    private static int contador = 1;
+
     private int idPaciente;
     private int altura;
     private float peso;
-    private String dataNacimento; 
+    private String dataNacimento;
     private String endereco;
     private List<String> contactoEmergencia;
     private List<Consulta> consultas;
@@ -16,11 +18,11 @@ public class Paciente extends Pessoa {
     private List<Tratamento> tratamentos;
     private List<Internamento> internamentos;
 
-    public Paciente(int idPaciente, int altura, float peso, String nome, String dataNacimento, char genero,
+    public Paciente(int altura, float peso, String nome, String dataNacimento, char genero,
             String endereco, List<String> contacto, List<String> contactoEmergencia, List<Consulta> consultas,
             List<Exame> exames, List<Tratamento> tratamentos, List<Internamento> internamentos) {
         super(nome, genero, contacto);
-        this.idPaciente = idPaciente;
+        this.idPaciente = contador++;
         this.altura = altura;
         this.peso = peso;
         this.dataNacimento = dataNacimento;
@@ -32,11 +34,16 @@ public class Paciente extends Pessoa {
         this.internamentos = internamentos;
     }
 
+    // Sincroniza o contador com os dados carregados do ficheiro
+    public static void sincronizarContador(List<Paciente> lista) {
+        lista.stream()
+             .mapToInt(Paciente::getIdPaciente)
+             .max()
+             .ifPresent(max -> contador = max + 1);
+    }
+
     public int getIdPaciente() {
         return idPaciente;
-    }
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
     }
 
     public int getIdade() {
@@ -51,75 +58,37 @@ public class Paciente extends Pessoa {
         }
     }
 
-    public String getDataNacimento() {
-        return dataNacimento;
-    }
-    public void setDataNacimento(String dataNacimento) {
-        this.dataNacimento = dataNacimento;
-    }
+    public String getDataNacimento() { return dataNacimento; }
+    public void setDataNacimento(String dataNacimento) { this.dataNacimento = dataNacimento; }
 
-    public String getEndereco() {
-        return endereco;
-    }
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    public String getEndereco() { return endereco; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
-    public List<String> getContactoEmergencia() {
-        return contactoEmergencia;
-    }
-    public void setContactoEmergencia(List<String> contactoEmergencia) {
-        this.contactoEmergencia = contactoEmergencia;
-    }
+    public List<String> getContactoEmergencia() { return contactoEmergencia; }
+    public void setContactoEmergencia(List<String> contactoEmergencia) { this.contactoEmergencia = contactoEmergencia; }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
-    }
+    public List<Consulta> getConsultas() { return consultas; }
+    public void setConsultas(List<Consulta> consultas) { this.consultas = consultas; }
 
-    public List<Exame> getExames() {
-        return exames;
-    }
-    public void setExames(List<Exame> exames) {
-        this.exames = exames;
-    }
+    public List<Exame> getExames() { return exames; }
+    public void setExames(List<Exame> exames) { this.exames = exames; }
 
-    public List<Tratamento> getTratamentos() {
-        return tratamentos;
-    }
-    public void setTratamentos(List<Tratamento> tratamentos) {
-        this.tratamentos = tratamentos;
-    }
+    public List<Tratamento> getTratamentos() { return tratamentos; }
+    public void setTratamentos(List<Tratamento> tratamentos) { this.tratamentos = tratamentos; }
 
-    public List<Internamento> getInternamentos() {
-        return internamentos;
-    }
-    public void setInternamentos(List<Internamento> internamentos) {
-        this.internamentos = internamentos;
-    }
+    public List<Internamento> getInternamentos() { return internamentos; }
+    public void setInternamentos(List<Internamento> internamentos) { this.internamentos = internamentos; }
 
-    public int getAltura() {
-        return altura;
-    }
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
+    public int getAltura() { return altura; }
+    public void setAltura(int altura) { this.altura = altura; }
 
-    public float getPeso() {
-        return peso;
-    }
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
+    public float getPeso() { return peso; }
+    public void setPeso(float peso) { this.peso = peso; }
 
-    public List<Consulta> listarConsultas() {
-        return this.consultas;
-    }
+    public List<Consulta> listarConsultas() { return this.consultas; }
 
     public float calcularIMC() {
-        return this.peso / (this.altura * this.altura / 10000f); // Altura em cm, dividir por 10000
+        return this.peso / (this.altura * this.altura / 10000f);
     }
 
     public void verificarIMC() {

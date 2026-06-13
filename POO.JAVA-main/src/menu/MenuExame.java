@@ -45,16 +45,15 @@ public class MenuExame {
     private static void cadastrarExame() {
         System.out.println("\n--- MARCAR EXAME ---");
         try {
-            int id   = ConsoleInput.lerInteiro("ID do Exame: ");
             String tipo = ConsoleInput.lerString("Tipo (ex: Hemograma, Raio-X): ");
             String data = ConsoleInput.lerString("Data (dd/mm/aaaa): ");
 
-            int idCons    = ConsoleInput.lerInteiro("ID da Consulta Associada: ");
-            Consulta c    = consultaService.buscarConsultaPorId(idCons);
+            int idCons = ConsoleInput.lerInteiro("ID da Consulta Associada: ");
+            Consulta c = consultaService.buscarConsultaPorId(idCons);
 
-            Exame e = new Exame(tipo, id, data, "Pendente", "N/A", c.getPaciente(), c);
+            Exame e = new Exame(tipo, data, "Pendente", "N/A", c.getPaciente(), c);
             exameService.solicitarExame(e);
-            System.out.println("Sucesso: Exame marcado com sucesso!");
+            System.out.println("Sucesso: Exame marcado com sucesso! ID atribuído: " + e.getIdExame());
 
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO DE REGISTO]: " + e.getMessage());

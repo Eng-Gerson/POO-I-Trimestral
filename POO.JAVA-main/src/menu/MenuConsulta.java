@@ -39,7 +39,6 @@ public class MenuConsulta {
     private static void marcarConsulta() {
         System.out.println("\n--- MARCAR NOVA CONSULTA ---");
         try {
-            int id      = ConsoleInput.lerInteiro("ID da consulta: ");
             String data = ConsoleInput.lerString("Data (dd/mm/aaaa): ");
             String hora = ConsoleInput.lerString("Hora (hh:mm): ");
             String tipo = ConsoleInput.lerString("Tipo (ex: Rotina/Emergência): ");
@@ -48,12 +47,12 @@ public class MenuConsulta {
             int idPac   = ConsoleInput.lerInteiro("ID do Paciente: ");
             Paciente p  = pacienteService.buscarPacientePorId(idPac);
 
-            int idProf      = ConsoleInput.lerInteiro("ID do Profissional: ");
+            int idProf        = ConsoleInput.lerInteiro("ID do Profissional: ");
             Profissional prof = profService.buscarProfissionalPorId(idProf);
 
-            Consulta c = new Consulta(id, data, hora, tipo, obs, p, prof, "A definir");
+            Consulta c = new Consulta(data, hora, tipo, obs, p, prof, "A definir");
             service.agendarConsulta(c);
-            System.out.println("Sucesso: Consulta marcada com sucesso!");
+            System.out.println("Sucesso: Consulta marcada com sucesso! ID atribuído: " + c.getIdConsulta());
 
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO DE REGISTO]: " + e.getMessage());

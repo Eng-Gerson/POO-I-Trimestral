@@ -13,17 +13,13 @@ public class ProfissionalService {
 
     public ProfissionalService() {
         this.profissionalRepository = new ProfissionalRepository();
+        // Sincroniza o contador com os dados já guardados no ficheiro
+        Profissional.sincronizarContador(profissionalRepository.buscarTodos());
     }
 
     public void cadastrarProfissional(Profissional profissional) {
         if (profissional == null) {
             throw new ProfissionalInvalidoException("Os dados do profissional não foram fornecidos.");
-        }
-        if (profissional.getIdProfissional() <= 0) {
-            throw new ProfissionalInvalidoException("ID do profissional inválido. Deve ser maior que zero.");
-        }
-        if (profissionalRepository.buscarPorId(profissional.getIdProfissional()) != null) {
-            throw new ProfissionalInvalidoException("Já existe um profissional registado com o ID: " + profissional.getIdProfissional());
         }
         if (profissional.getNome() == null || profissional.getNome().trim().isEmpty()) {
             throw new ProfissionalInvalidoException("O nome do profissional é obrigatório.");
@@ -36,7 +32,7 @@ public class ProfissionalService {
         }
 
         profissionalRepository.salvar(profissional);
-        System.out.println("Sucesso: Profissional " + profissional.getNome() + " cadastrado com sucesso!");
+        System.out.println("Sucesso: Profissional " + profissional.getNome() + " cadastrado com ID " + profissional.getIdProfissional() + "!");
     }
 
     public List<Profissional> listarProfissionais() {

@@ -27,9 +27,9 @@ public class MenuTratamento {
             System.out.println("5. Encerrar Tratamento");
             System.out.println("6. Marcar Tratamento como Concluído");
             System.out.println("0. Voltar");
-            
+
             op = ConsoleInput.lerInteiro("Opção: ");
-            
+
             switch (op) {
                 case 1: iniciarTratamento(); break;
                 case 2: listarTodos(); break;
@@ -45,25 +45,24 @@ public class MenuTratamento {
 
     private static void iniciarTratamento() {
         System.out.println("\n--- INICIAR NOVO TRATAMENTO ---");
-        
+
         try {
-            int id = ConsoleInput.lerInteiro("ID do tratamento: ");
-            String tipo = ConsoleInput.lerString("Tipo de tratamento: ");
-            String desc = ConsoleInput.lerString("Descrição: ");
+            String tipo   = ConsoleInput.lerString("Tipo de tratamento: ");
+            String desc   = ConsoleInput.lerString("Descrição: ");
             String inicio = ConsoleInput.lerString("Data de Início (dd/MM/yyyy): ");
-            String fim = ConsoleInput.lerString("Data de Fim (dd/MM/yyyy) [deixe vazio se ainda não sabe]: ");
-            
-            int idPac = ConsoleInput.lerInteiro("ID do Paciente: ");
+            String fim    = ConsoleInput.lerString("Data de Fim (dd/MM/yyyy) [deixe vazio se ainda não sabe]: ");
+
+            int idPac  = ConsoleInput.lerInteiro("ID do Paciente: ");
             Paciente p = pacienteService.buscarPacientePorId(idPac);
-            
+
             List<Profissional> profissionaisEnvolvidos = new ArrayList<>();
             int qtd = ConsoleInput.lerInteiro("Quantos profissionais estão envolvidos? ");
-            
+
             if (qtd <= 0) {
                 System.out.println("[ERRO]: O tratamento deve ter pelo menos um profissional!");
                 return;
             }
-            
+
             for (int i = 0; i < qtd; i++) {
                 int idProf = ConsoleInput.lerInteiro("ID do Profissional " + (i + 1) + ": ");
                 try {
@@ -76,9 +75,9 @@ public class MenuTratamento {
                 }
             }
 
-            
-            Tratamento t = new Tratamento(id, tipo, desc, inicio, fim.isEmpty() ? null : fim, p, profissionaisEnvolvidos);
+            Tratamento t = new Tratamento(tipo, desc, inicio, fim.isEmpty() ? null : fim, p, profissionaisEnvolvidos);
             service.iniciarTratamento(t);
+            System.out.println("Sucesso: Tratamento iniciado com sucesso! ID atribuído: " + t.getIdTratamento());
 
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO DE REGISTO]: " + e.getMessage());
@@ -92,25 +91,25 @@ public class MenuTratamento {
     private static void listarTodos() {
         System.out.println("\n--- LISTA DE TODOS OS TRATAMENTOS ---");
         List<Tratamento> lista = service.listarHistoricoTratamentos();
-        
+
         if (lista.isEmpty()) {
             System.out.println("Nenhum tratamento registado até ao momento.");
             return;
         }
 
-        lista.forEach(t -> 
-            System.out.println("ID: " + t.getIdTratamento() + " | Tipo: " + t.getTipo() 
-                + " | Paciente: " + t.getPaciente().getNome() 
+        lista.forEach(t ->
+            System.out.println("ID: " + t.getIdTratamento() + " | Tipo: " + t.getTipo()
+                + " | Paciente: " + t.getPaciente().getNome()
                 + " | Status: " + t.getStatus()));
     }
 
     private static void buscarTratamento() {
         System.out.println("\n--- BUSCAR TRATAMENTO ---");
-        int id = ConsoleInput.lerInteiro("Índice/ID do tratamento: ");
-        
+        int id = ConsoleInput.lerInteiro("ID do tratamento: ");
+
         try {
-            Tratamento t = service.buscarPorId(id); 
-            
+            Tratamento t = service.buscarPorId(id);
+
             System.out.println("\n--- DETALHES DO TRATAMENTO ---");
             System.out.println("ID: " + t.getIdTratamento());
             System.out.println("Tipo: " + t.getTipo());
@@ -121,7 +120,7 @@ public class MenuTratamento {
             System.out.println("Profissionais: " + t.getProfissionais().size() + " registado(s).");
             System.out.println("Status: " + t.getStatus());
             System.out.println("Concluído: " + (t.isConcluido() ? "Sim" : "Não"));
-            
+
         } catch (EntidadeNaoEncontradaException e) {
             System.out.println("\n[ERRO]: " + e.getMessage());
         }
@@ -130,17 +129,17 @@ public class MenuTratamento {
     private static void listarPorPaciente() {
         System.out.println("\n--- LISTAR TRATAMENTOS POR PACIENTE ---");
         int id = ConsoleInput.lerInteiro("ID do Paciente: ");
-        
+
         try {
             pacienteService.buscarPacientePorId(id);
-            
+
             System.out.println("Resultados para o Paciente ID " + id + ":");
             long total = service.listarHistoricoTratamentos().stream()
                 .filter(t -> t.getPaciente().getIdPaciente() == id)
-                .peek(t -> System.out.println(" - ID: " + t.getIdTratamento() + " | Tratamento: " + t.getTipo() 
+                .peek(t -> System.out.println(" - ID: " + t.getIdTratamento() + " | Tratamento: " + t.getTipo()
                     + " | Status: " + t.getStatus()))
                 .count();
-                
+
             if (total == 0) {
                 System.out.println("Nenhum histórico de tratamento associado a este paciente.");
             }
@@ -149,12 +148,11 @@ public class MenuTratamento {
         }
     }
 
-     
     private static void encerrarTratamento() {
         System.out.println("\n--- ENCERRAR TRATAMENTO ---");
         int id = ConsoleInput.lerInteiro("ID do tratamento a encerrar: ");
         String dataFim = ConsoleInput.lerString("Data de Término (dd/MM/yyyy): ");
-        
+
         try {
             service.encerraTratamento(id, dataFim);
         } catch (TratamentoInvalidoException e) {
@@ -164,11 +162,10 @@ public class MenuTratamento {
         }
     }
 
-          
     private static void concluirTratamento() {
         System.out.println("\n--- MARCAR TRATAMENTO COMO CONCLUÍDO ---");
         int id = ConsoleInput.lerInteiro("ID do tratamento a concluir: ");
-        
+
         try {
             service.concluirTratamento(id);
         } catch (TratamentoInvalidoException e) {
